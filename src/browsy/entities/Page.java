@@ -10,7 +10,6 @@ public class Page {
 	 * @param link
 	 */
 	public Page(int id, String name, String link) {
-		super();
 		this.id = id;
 		this.name = name;
 		this.link = link;
