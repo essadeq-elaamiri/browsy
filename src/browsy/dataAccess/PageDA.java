@@ -84,7 +84,6 @@ public class PageDA extends DataAccessAbs<Page> {
 				pages.add(page);
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		finally {
@@ -95,21 +94,74 @@ public class PageDA extends DataAccessAbs<Page> {
 	}
 
 	@Override
-	public void save(Page t) {
-		// TODO Auto-generated method stub
+	public void save(Page page) {
+		String insertCols = COLS[1]+","+COLS[2];
+		String sql = this.INSERT.
+				replace("{{TABLE_NAME}}", TABLE_NAME).
+				replace("{{INSERT_COLS}}", insertCols).
+				replace("{{VALUES_?}}", "?,?");
+
+		PreparedStatement preparedStatement = null;
+		boolean status = false;
+
+		try {
+			preparedStatement = DAUtils.initializePreparedStatement(this.connection, sql, true, page.getName(), page.getLink());
+			status = preparedStatement.execute();
+			//			if(!status) {
+			//				//
+			//			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		finally {
+			DAUtils.closeRessources(preparedStatement);
+		}
 
 	}
 
 	@Override
 	public void delete(int id) {
-		// TODO Auto-generated method stub
+		String sql = this.DELETE.
+				replace("{{TABLE_NAME}}", TABLE_NAME).
+				replace("{{COL_NAME}}", COLS[0]);
+
+		PreparedStatement preparedStatement = null;
+		boolean status = false;
+
+		try {
+			preparedStatement = DAUtils.initializePreparedStatement(this.connection, sql, true, id);
+			status = preparedStatement.execute();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		finally {
+			DAUtils.closeRessources(preparedStatement);
+		}
 
 	}
 
 	@Override
-	public void update(int id, Page newt) {
-		// TODO Auto-generated method stub
+	public void update(int id, Page newpage) {
+		String updates = COLS[1]+"=?, "+COLS[2]+"=? ";
+		String sql = this.UPDATE.
+				replace("{{TABLE_NAME}}", TABLE_NAME).
+				replace("{{UPDATES}}", updates).
+				replace("{{UPDATE_CONDITION_COL}}", COLS[0]);
 
+		PreparedStatement preparedStatement = null;
+		boolean status = false;
+
+		try {
+			preparedStatement = DAUtils.initializePreparedStatement(this.connection, sql, true, newpage.getName(), newpage.getLink() , id);
+			status = preparedStatement.execute();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		finally {
+			DAUtils.closeRessources(preparedStatement);
+		}
 	}
 
 }
