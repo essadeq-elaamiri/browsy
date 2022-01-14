@@ -11,7 +11,6 @@ public class Folder {
 	 * @param name
 	 */
 	public Folder(int id, String name) {
-		super();
 		this.id = id;
 		this.name = name;
 	}

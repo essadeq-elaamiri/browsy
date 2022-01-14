@@ -12,7 +12,6 @@ public class Bookmark {
 	 * @param createdAt
 	 */
 	public Bookmark(int id, Date createdAt) {
-		super();
 		this.id = id;
 		this.createdAt = createdAt;
 	}
