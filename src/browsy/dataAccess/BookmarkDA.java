@@ -16,9 +16,6 @@ public class BookmarkDA extends DataAccessAbs<Bookmark>{
 	private final String TABLE_NAME = "bookmark";
 	private final String [] COLS = {"id", "pageId", "folderId", "createdAt"};
 
-
-
-
 	@Override
 	public List<Bookmark> getAll() {
 		String sql = this.GET_ALL.replace("{{TABLE_NAME}}", TABLE_NAME);
