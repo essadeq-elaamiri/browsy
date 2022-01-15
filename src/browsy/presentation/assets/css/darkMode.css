@@ -1,0 +1,26 @@
+.primary-color{
+    -fx-background-color: #383838;
+}
+
+.secondary-color{
+    -fx-background-color: #000;
+}
+
+.button{
+    -fx-border-radius: 15px;
+    -fx-background-radius: 15px;
+    -fx-border-color: 383838;
+    -fx-text-fill: #FFF;
+}
+
+.favorite{
+    -fx-fill: red;
+}
+
+.text{
+    -fx-fill:#fff;
+}
+
+.glyph-icon {
+    -fx-fill: #fff;
+}
