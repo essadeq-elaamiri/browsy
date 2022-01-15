@@ -17,7 +17,7 @@ public class HistoryDA extends DataAccessAbs<History> {
 	@Override
 	public List<History> getAll() {
 		String sql = this.GET_ALL.replace("{{TABLE_NAME}}", TABLE_NAME);
-		List<History> bookmarks = new ArrayList<>();
+		List<History> histories = new ArrayList<>();
 		Statement statement = null; 
 		ResultSet result = null;
 		History history;
@@ -32,7 +32,7 @@ public class HistoryDA extends DataAccessAbs<History> {
 				page = pageDa.getOneById(result.getInt(1));
 				history.setPage(page);
 
-				bookmarks.add(history);
+				histories.add(history);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -41,7 +41,7 @@ public class HistoryDA extends DataAccessAbs<History> {
 			DAUtils.closeRessources(statement, connection);
 		}
 
-		return bookmarks;
+		return histories;
 	}
 
 	@Override
@@ -82,7 +82,7 @@ public class HistoryDA extends DataAccessAbs<History> {
 		History history = null;
 		Page page;
 		PageDA pageDa = new PageDA();
-		List<History> bookmarks = new ArrayList<History>();
+		List<History> histories = new ArrayList<History>();
 
 		try {
 			preparedStatement = DAUtils.initializePreparedStatement(this.connection, sql, false, "%"+keyword+"%");
@@ -91,7 +91,7 @@ public class HistoryDA extends DataAccessAbs<History> {
 				history = new History(result.getInt(0), result.getDate(2));
 				page = pageDa.getOneById(result.getInt(1));
 				history.setPage(page);
-				bookmarks.add(history);
+				histories.add(history);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -100,7 +100,7 @@ public class HistoryDA extends DataAccessAbs<History> {
 			DAUtils.closeRessources(result);
 			DAUtils.closeRessources(preparedStatement);
 		}
-		return bookmarks;
+		return histories;
 	}
 
 	@Override

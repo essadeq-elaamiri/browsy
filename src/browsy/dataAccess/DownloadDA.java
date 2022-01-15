@@ -94,7 +94,7 @@ public class DownloadDA extends DataAccessAbs<Download> {
 		Page page;
 		FolderDA folderDa = new FolderDA();
 		PageDA pageDa = new PageDA();
-		List<Download> bookmarks = new ArrayList<Download>();
+		List<Download> downloads = new ArrayList<Download>();
 
 		try {
 			preparedStatement = DAUtils.initializePreparedStatement(this.connection, sql, false, "%"+keyword+"%");
@@ -108,7 +108,7 @@ public class DownloadDA extends DataAccessAbs<Download> {
 						result.getString(4),
 						result.getDouble(5),
 						result.getString(6));
-				bookmarks.add(download);
+				downloads.add(download);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -117,7 +117,7 @@ public class DownloadDA extends DataAccessAbs<Download> {
 			DAUtils.closeRessources(result);
 			DAUtils.closeRessources(preparedStatement);
 		}
-		return bookmarks;
+		return downloads;
 	}
 
 	@Override
