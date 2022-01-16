@@ -21,3 +21,7 @@
 .glyph-icon {
     -fx-fill: #000;
 }
+
+.text{
+    -fx-font-family: 'Ubuntu', sans-serif;
+}

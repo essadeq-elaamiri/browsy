@@ -19,8 +19,10 @@
 
 .text{
     -fx-fill:#fff;
+    -fx-font-family: 'Ubuntu', sans-serif;
 }
 
 .glyph-icon {
     -fx-fill: #fff;
 }
+
