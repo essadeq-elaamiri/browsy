@@ -104,7 +104,7 @@ public class HistoryDA extends DataAccessAbs<History> {
 	}
 
 	@Override
-	public void save(History history) {
+	public int save(History history) {
 		String insertCols = COLS[1]+","+COLS[2];
 		String sql = this.INSERT.
 				replace("{{TABLE_NAME}}", TABLE_NAME).
@@ -125,6 +125,7 @@ public class HistoryDA extends DataAccessAbs<History> {
 			DAUtils.closeRessources(preparedStatement);
 		}
 
+		return 0;
 	}
 
 	@Override

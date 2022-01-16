@@ -121,7 +121,7 @@ public class DownloadDA extends DataAccessAbs<Download> {
 	}
 
 	@Override
-	public void save(Download download) {
+	public int save(Download download) {
 		String insertCols = COLS[1]+","+COLS[2]+","+COLS[3]+","+COLS[4]+","+COLS[5]+","+COLS[6];
 		String sql = this.INSERT.
 				replace("{{TABLE_NAME}}", TABLE_NAME).
@@ -151,6 +151,7 @@ public class DownloadDA extends DataAccessAbs<Download> {
 			DAUtils.closeRessources(preparedStatement);
 		}
 
+		return 0;
 	}
 
 	@Override

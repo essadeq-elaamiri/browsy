@@ -94,7 +94,7 @@ public class FolderDA extends DataAccessAbs<Folder> {
 	}
 
 	@Override
-	public void save(Folder folder) {
+	public int save(Folder folder) {
 		String insertCols = COLS[1]+","+COLS[2];
 		String sql = this.INSERT.
 				replace("{{TABLE_NAME}}", TABLE_NAME).
@@ -117,6 +117,7 @@ public class FolderDA extends DataAccessAbs<Folder> {
 			DAUtils.closeRessources(preparedStatement);
 		}
 
+		return 0;
 	}
 
 	@Override

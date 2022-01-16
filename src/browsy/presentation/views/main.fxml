@@ -1,150 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
-<?import java.lang.String?>
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.MenuButton?>
-<?import javafx.scene.control.MenuItem?>
-<?import javafx.scene.control.Tab?>
-<?import javafx.scene.control.TabPane?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.web.WebView?>
+<?import de.jensd.fx.glyphs.fontawesome.*?>
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane prefHeight="500.0" prefWidth="800.0" stylesheets="@../assets/css/lightMode.css" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="browsy.presentation.controllers.MainController">
    <children>
-      <TabPane layoutX="100.0" layoutY="22.0" prefHeight="200.0" prefWidth="200.0" styleClass="primary-color" stylesheets="@../style/lightMode.css" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-        <tabs>
-          <Tab styleClass="primary-color" text="New Tab  ">
-               <content>
-                  <BorderPane prefHeight="200.0" prefWidth="200.0" styleClass="primary-color">
-                     <top>
-                        <HBox prefHeight="14.0" prefWidth="600.0" spacing="10.0" style="-fx-border-width: 0 0 1px 0; -fx-border-color: #000;" BorderPane.alignment="CENTER">
-                           <children>
-                              <Button mnemonicParsing="false">
-                                 <graphic>
-                                    <FontAwesomeIconView glyphName="ANGLE_LEFT" />
-                                 </graphic>
-                                 <styleClass>
-                                    <String fx:value="button" />
-                                    <String fx:value="primary-color" />
-                                    <String fx:value="glyph-icon" />
-                                 </styleClass>
-                              </Button>
-                              <Button mnemonicParsing="false">
-                                 <graphic>
-                                    <FontAwesomeIconView glyphName="ANGLE_RIGHT" styleClass="button" />
-                                 </graphic>
-                                 <styleClass>
-                                    <String fx:value="button" />
-                                    <String fx:value="glyph-icon" />
-                                    <String fx:value="primary-color" />
-                                 </styleClass>
-                              </Button>
-                              <Button mnemonicParsing="false">
-                                 <graphic>
-                                    <FontAwesomeIconView glyphName="REFRESH" styleClass="button" />
-                                 </graphic>
-                                 <styleClass>
-                                    <String fx:value="button" />
-                                    <String fx:value="glyph-icon" />
-                                    <String fx:value="primary-color" />
-                                 </styleClass>
-                              </Button>
-                              <Button mnemonicParsing="false">
-                                 <graphic>
-                                    <FontAwesomeIconView glyphName="HOME" />
-                                 </graphic>
-                                 <styleClass>
-                                    <String fx:value="button" />
-                                    <String fx:value="glyph-icon" />
-                                    <String fx:value="primary-color" />
-                                 </styleClass>
-                              </Button>
-                              <HBox alignment="CENTER" style="-fx-border-color: gray; -fx-border-radius: 10;">
-                                 <children>
-                                    <TextField prefHeight="23.0" prefWidth="382.0" style="-fx-background-color: #fff;" />
-                                    <Button mnemonicParsing="false" prefHeight="14.0" prefWidth="30.0">
-                                       <graphic>
-                                          <FontAwesomeIconView glyphName="BOOKMARK" size="12" styleClass="button" />
-                                       </graphic>
-                                       <styleClass>
-                                          <String fx:value="button" />
-                                          <String fx:value="glyph-icon" />
-                                          <String fx:value="primary-color" />
-                                       </styleClass>
-                                    </Button>
-                                 </children>
-                                 <padding>
-                                    <Insets left="5.0" right="5.0" />
-                                 </padding>
-                              </HBox>
-                              <Button mnemonicParsing="false">
-                                 <graphic>
-                                    <FontAwesomeIconView glyphName="ADJUST" styleClass="button" />
-                                 </graphic>
-                                 <styleClass>
-                                    <String fx:value="button" />
-                                    <String fx:value="glyph-icon" />
-                                    <String fx:value="primary-color" />
-                                 </styleClass>
-                              </Button>
-                              <MenuButton mnemonicParsing="false">
-                                <items>
-                                  <MenuItem mnemonicParsing="false" text="Action 1" />
-                                  <MenuItem mnemonicParsing="false" text="Action 2" />
-                                </items>
-                                 <graphic>
-                                    <FontAwesomeIconView glyphName="SLIDERS" />
-                                 </graphic>
-                                 <HBox.margin>
-                                    <Insets right="5.0" />
-                                 </HBox.margin>
-                                 <styleClass>
-                                    <String fx:value="button" />
-                                    <String fx:value="primary-color" />
-                                    <String fx:value="glyph-icon" />
-                                 </styleClass>
-                              </MenuButton>
-                           </children>
-                           <BorderPane.margin>
-                              <Insets />
-                           </BorderPane.margin>
-                           <padding>
-                              <Insets bottom="5.0" top="5.0" />
-                           </padding>
-                        </HBox>
-                     </top>
-                     <left>
-                        <WebView prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
-                     </left>
-                  </BorderPane>
-               </content>
+      <TabPane fx:id="tabPaneId" prefHeight="317.0" prefWidth="456.0" styleClass="primary-color" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+       <tabs>
+          <Tab fx:id="addTab" styleClass="secondary-color">
                <graphic>
-                  <Button mnemonicParsing="false" prefHeight="0.0" prefWidth="28.0">
-                     <graphic>
-                        <FontAwesomeIconView glyphName="TIMES" size="9" />
-                     </graphic>
-                     <styleClass>
-                        <String fx:value="button" />
-                        <String fx:value="primary-color" />
-                        <String fx:value="glyph-icon" />
-                     </styleClass>
-                  </Button>
+
+                <Button fx:id="previousButton" mnemonicParsing="false" style="-fx-background-color: gray" onAction="#onAjoutTab">
+                   <graphic>
+                      <FontAwesomeIcon glyphName="PLUS" size="10" text="" />
+                   </graphic>
+                   <styleClass>
+                      <String fx:value="primary-color" />
+                      
+                   </styleClass>
+                </Button>
                </graphic>
-            </Tab>
-            <Tab>
-              <content>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
-              </content>
-               <graphic>
-                  <FontAwesomeIconView glyphName="PLUS" size="9" />
-               </graphic>
-            </Tab>
-        </tabs>
+            
+          </Tab>
+       </tabs>
       </TabPane>
    </children>
 </AnchorPane>

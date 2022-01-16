@@ -24,7 +24,7 @@ public abstract class DataAccessAbs<T> {
 	public abstract T getOneById(int id);
 	public abstract  List<T> getAllByKeyword(String keyword);
 
-	public abstract void save(T t);
+	public abstract int save(T t);
 
 	public abstract void delete(int id);
 

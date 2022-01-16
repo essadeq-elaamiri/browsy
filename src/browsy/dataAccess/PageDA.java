@@ -94,7 +94,7 @@ public class PageDA extends DataAccessAbs<Page> {
 	}
 
 	@Override
-	public void save(Page page) {
+	public int save(Page page) {
 		String insertCols = COLS[1]+","+COLS[2];
 		String sql = this.INSERT.
 				replace("{{TABLE_NAME}}", TABLE_NAME).
@@ -103,10 +103,18 @@ public class PageDA extends DataAccessAbs<Page> {
 
 		PreparedStatement preparedStatement = null;
 		boolean status = false;
+		int last_inserted_id = 0;
 
 		try {
 			preparedStatement = DAUtils.initializePreparedStatement(this.connection, sql, true, page.getName(), page.getLink());
 			status = preparedStatement.execute();
+			//Ajouté par mouad
+			//return l'id du page crée
+			ResultSet rs=preparedStatement.getGeneratedKeys();
+			if(rs.next())
+			{
+				last_inserted_id = rs.getInt(1);
+			}
 			//			if(!status) {
 			//				//
 			//			}
@@ -116,6 +124,7 @@ public class PageDA extends DataAccessAbs<Page> {
 		finally {
 			DAUtils.closeRessources(preparedStatement);
 		}
+		return last_inserted_id;
 
 	}
 

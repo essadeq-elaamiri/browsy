@@ -119,7 +119,7 @@ public class BookmarkDA extends DataAccessAbs<Bookmark>{
 	}
 
 	@Override
-	public void save(Bookmark bookmark) {
+	public int save(Bookmark bookmark) {
 		String insertCols = COLS[1]+","+COLS[2]+","+COLS[3];
 		String sql = this.INSERT.
 				replace("{{TABLE_NAME}}", TABLE_NAME).
@@ -142,6 +142,7 @@ public class BookmarkDA extends DataAccessAbs<Bookmark>{
 			DAUtils.closeRessources(preparedStatement);
 		}
 
+		return 0;
 	}
 
 	@Override

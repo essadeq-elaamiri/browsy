@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon?>
+<?import java.lang.String?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.MenuButton?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.web.WebView?>
+
+<AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="418.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="browsy.presentation.controllers.WebViewController">
+<children>
+   <BorderPane layoutX="88.0" layoutY="47.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <top>
+         <HBox prefHeight="40.0" prefWidth="800.0" spacing="20.0" style="-fx-border-width: 0 0 1 0; -fx-border-color: gray;" BorderPane.alignment="CENTER">
+            <children>
+               <Button fx:id="previousButton" mnemonicParsing="false" onAction="#onPrevious">
+                  <graphic>
+                     <FontAwesomeIcon glyphName="ANGLE_LEFT" />
+                  </graphic>
+                  <styleClass>
+                     <String fx:value="primary-color" />
+                     <String fx:value="button" />
+                  </styleClass>
+               </Button>
+               <Button fx:id="nextButton" mnemonicParsing="false" onAction="#onNext">
+                  <graphic>
+                     <FontAwesomeIcon glyphName="ANGLE_RIGHT" />
+                  </graphic>
+                  <styleClass>
+                     <String fx:value="button" />
+                     <String fx:value="primary-color" />
+                  </styleClass>
+               </Button>
+               <Button fx:id="reloadButton" mnemonicParsing="false" onAction="#OnRefresh">
+                  <graphic>
+                     <FontAwesomeIcon glyphName="REFRESH" />
+                  </graphic>
+                  <styleClass>
+                     <String fx:value="primary-color" />
+                     <String fx:value="button" />
+                  </styleClass>
+               </Button>
+               <Button fx:id="homeButton" mnemonicParsing="false" onAction="#onHome">
+                  <graphic>
+                     <FontAwesomeIcon glyphName="HOME" />
+                  </graphic>
+                  <styleClass>
+                     <String fx:value="primary-color" />
+                     <String fx:value="button" />
+                  </styleClass>
+               </Button>
+               <HBox prefHeight="26.0" prefWidth="493.0" style="-fx-border-color: gray; -fx-border-radius: 10; -fx-background-radius: 10;" styleClass="primary-color">
+                  <children>
+                     <TextField fx:id="mainSearchField" onKeyReleased="#onSearchWebSite" prefHeight="26.0" prefWidth="473.0" styleClass="primary-color" />
+                     <Button fx:id="favoriteButton" mnemonicParsing="false" onAction="#onAddToFavorite" prefHeight="0.0" prefWidth="25.0">
+                        <graphic>
+                           <FontAwesomeIcon glyphName="BOOKMARK" />
+                        </graphic>
+                        <styleClass>
+                           <String fx:value="primary-color" />
+                           <String fx:value="button" />
+                        </styleClass>
+                     </Button>
+                  </children>
+                  <HBox.margin>
+                     <Insets />
+                  </HBox.margin>
+                  <padding>
+                     <Insets left="10.0" right="10.0" />
+                  </padding>
+               </HBox>
+               <Button fx:id="switchModeButton" mnemonicParsing="false" onAction="#onSwitchMode">
+                  <graphic>
+                     <FontAwesomeIcon glyphName="ADJUST" />
+                  </graphic>
+                  <styleClass>
+                     <String fx:value="primary-color" />
+                     <String fx:value="button" />
+                  </styleClass>
+               </Button>
+               <MenuButton fx:id="settingsButton" mnemonicParsing="false">
+                  <items>
+                     <MenuItem mnemonicParsing="false" text="Action 1" />
+                     <MenuItem mnemonicParsing="false" text="Action 2" />
+                  </items>
+                  <graphic>
+                     <FontAwesomeIcon glyphName="SLIDERS" />
+                  </graphic>
+                  <styleClass>
+                     <String fx:value="button" />
+                     <String fx:value="primary-color" />
+                  </styleClass>
+               </MenuButton>
+            </children>
+            <padding>
+               <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+            </padding>
+         </HBox>
+      </top>
+      <center>
+         <AnchorPane BorderPane.alignment="CENTER">
+            <BorderPane.margin>
+               <Insets />
+            </BorderPane.margin>
+            <children>
+               <WebView fx:id="webView" prefHeight="-1.0" prefWidth="-1.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+            </children>
+         </AnchorPane>
+      </center>
+   </BorderPane>
+</children>
+</AnchorPane>
