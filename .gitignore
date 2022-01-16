@@ -5,3 +5,4 @@ bin/
 build.fxbuild 
 mysql/
 javafx-sdk-17.0.0.1/
+out/
