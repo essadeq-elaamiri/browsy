@@ -53,7 +53,12 @@ public class FolderDA extends DataAccessAbs<Folder> {
 			preparedStatement = DAUtils.initializePreparedStatement(connection, sql, false, id);
 			result = preparedStatement.executeQuery();
 			if(result.next()) {
-				folder = new Folder(result.getInt(0), result.getString(1));
+
+				//change start index from 0 to 1
+				//previous WRONG:
+				//folder = new Folder(result.getInt(0), result.getString(1));
+				//new :
+				folder = new Folder(result.getInt(1), result.getString(2));
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block

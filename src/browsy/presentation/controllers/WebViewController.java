@@ -86,7 +86,8 @@ public class WebViewController implements Initializable {
     void onAddToFavorite(ActionEvent event) {
             new Thread(() -> {
                 Folder folder=new FolderDA().getOneById(1);
-                Page pp=new PageDA().getAllByKeyword(webView.getEngine().getTitle()).get(0);
+                System.out.println(webView.getEngine().getLocation());
+                Page pp=new PageDA().getAllByKeyword(webView.getEngine().getLocation()).get(0);
                  Bookmark book=new Bookmark(0,null);
                  book.setPage(pp);
                  book.setFolder(folder);

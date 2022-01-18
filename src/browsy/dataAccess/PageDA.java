@@ -83,7 +83,11 @@ public class PageDA extends DataAccessAbs<Page> {
 			preparedStatement = DAUtils.initializePreparedStatement(this.connection, sql, false, "%"+keyword+"%");
 			result = preparedStatement.executeQuery();
 			while(result.next()) {
-				page = new Page(result.getInt(0), result.getString(1), result.getString(2));
+				//change start index from 0 to 1
+				//previous WRONG:
+				//page = new Page(result.getInt(0), result.getString(1), result.getString(2));
+				//new :
+				page = new Page(result.getInt(1), result.getString(2), result.getString(3));
 				pages.add(page);
 			}
 		} catch (SQLException e) {
