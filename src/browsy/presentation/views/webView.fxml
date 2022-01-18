@@ -85,8 +85,9 @@
                </Button>
                <MenuButton fx:id="settingsButton" mnemonicParsing="false">
                   <items>
-                     <MenuItem mnemonicParsing="false" text="Action 1" />
-                     <MenuItem mnemonicParsing="false" text="Action 2" />
+                     <MenuItem mnemonicParsing="false" text="History" onAction="#onHistory"/>
+                     <MenuItem mnemonicParsing="false" text="Bookmarks" onAction="#onBookmarks"/>
+                     <MenuItem mnemonicParsing="false" text="Downloads" onAction="#onDownloads"/>
                   </items>
                   <graphic>
                      <FontAwesomeIcon glyphName="SLIDERS" />

@@ -45,6 +45,7 @@ public class MainController implements Initializable {
         tabPaneId.getTabs().add(tabPaneId.getTabs().size()-1,tab);
         tabPaneId.getSelectionModel().select(tabPaneId.getTabs().size()-2);
         ((WebViewController)fxmlLoader.getController()).setTab(tabPaneId.getTabs().get(tabPaneId.getTabs().size()-2));
+        ((WebViewController)fxmlLoader.getController()).setTabPane(tabPaneId);
         //root.setUserData(tabPaneId.getTabs().get(tabPaneId.getTabs().size()-2));
     }
 

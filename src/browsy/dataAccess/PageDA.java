@@ -53,7 +53,7 @@ public class PageDA extends DataAccessAbs<Page> {
 			preparedStatement = DAUtils.initializePreparedStatement(connection, sql, false, id);
 			result = preparedStatement.executeQuery();
 			if(result.next()) {
-				page = new Page(result.getInt(0), result.getString(1), result.getString(2));
+				page = new Page(result.getInt(1), result.getString(2), result.getString(3));
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -69,12 +69,15 @@ public class PageDA extends DataAccessAbs<Page> {
 	}
 
 	@Override
-	public List<Page> getAllByKeyword(String keyword) { //by name
-		String sql = this.GET_ALL_LIKE.replace("{{TABLE_NAME}}", TABLE_NAME).replace("{{COL_NAME}}", COLS[1]);
+	public List<Page> getAllByKeyword(String keyword) {
+		//by name
+		//String sql = this.GET_ALL_LIKE.replace("{{TABLE_NAME}}", TABLE_NAME).replace("{{COL_NAME}}", COLS[1]);
+		//by link
+		String sql = this.GET_ALL_LIKE.replace("{{TABLE_NAME}}", TABLE_NAME).replace("{{COL_NAME}}", COLS[2]);
 		PreparedStatement preparedStatement = null;
 		ResultSet result = null;
 		Page page = null;
-		List<Page> pages = new ArrayList<Page>();
+		List<Page> pages = new ArrayList<>();
 
 		try {
 			preparedStatement = DAUtils.initializePreparedStatement(this.connection, sql, false, "%"+keyword+"%");
