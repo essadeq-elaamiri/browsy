@@ -9,7 +9,7 @@
 .button{
     -fx-border-radius: 15px;
     -fx-background-radius: 15px;
-    -fx-border-color: 383838;
+    -fx-border-color: #383838;
     -fx-text-fill: #FFF;
 }
 

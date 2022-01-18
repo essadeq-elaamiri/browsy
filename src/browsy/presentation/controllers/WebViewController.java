@@ -1,8 +1,12 @@
 package browsy.presentation.controllers;
 
 
+import browsy.dataAccess.BookmarkDA;
+import browsy.dataAccess.FolderDA;
 import browsy.dataAccess.HistoryDA;
 import browsy.dataAccess.PageDA;
+import browsy.entities.Bookmark;
+import browsy.entities.Folder;
 import browsy.entities.History;
 import browsy.entities.Page;
 import javafx.application.Platform;
@@ -81,10 +85,12 @@ public class WebViewController implements Initializable {
     @FXML
     void onAddToFavorite(ActionEvent event) {
             new Thread(() -> {
-                Page page=new Page(0,webView.getEngine().getTitle(),webView.getEngine().getLocation());
-                int i=new PageDA().save(page);
-                Page pp=new PageDA().getOneById(i);
-
+                Folder folder=new FolderDA().getOneById(1);
+                Page pp=new PageDA().getAllByKeyword(webView.getEngine().getTitle()).get(0);
+                 Bookmark book=new Bookmark(0,null);
+                 book.setPage(pp);
+                 book.setFolder(folder);
+                 new BookmarkDA().save(book);
             }).start();
         }
 
@@ -113,13 +119,28 @@ public class WebViewController implements Initializable {
 
     @FXML
     void onSwitchMode(ActionEvent event) {
-
+        Parent mainParent=webView.getParent().getParent().getParent().getParent().getParent().getParent();
+        String cssLink="/browsy/presentation/assets/css/";
+        String darkThemeName="darkMode.css";
+        String whiteThemeName="lightMode.css";
+        if(mainParent.getStylesheets().
+                get(0).
+                split("/")[mainParent.getStylesheets().get(0).split("/").length-1].
+                equals(whiteThemeName))
+        {
+            mainParent.getStylesheets().set(0,cssLink+darkThemeName);
+        }
+        else if(mainParent.getStylesheets().
+                get(0).
+                split("/")[mainParent.getStylesheets().get(0).split("/").length-1].
+                equals(darkThemeName))
+        {
+            mainParent.getStylesheets().set(0,cssLink+whiteThemeName);
+        }
     }
 
     public void loadPage() {
         webView.getEngine().load("https://www.qwant.com");
-
-        // engine.load("http://"+textField.getText());
     }
 
     public void initialiseSearch(){
@@ -162,9 +183,7 @@ public class WebViewController implements Initializable {
 
     }
 
-    public void waitForTitle(){
 
-    }
     public void addToHistory(){
         History history=new History(0, Date.valueOf(LocalDate.now()));
         Page page=new Page(0,webView.getEngine().getTitle(),webView.getEngine().getLocation());
@@ -175,36 +194,10 @@ public class WebViewController implements Initializable {
         history.setPage(pp);
         new HistoryDA().save(history);
     }
+
     public void onSearchWebSite(KeyEvent keyEvent) {
         if(keyEvent.getCode() == KeyCode.ENTER){
             webView.getEngine().load(mainSearchField.getText());
-/*            tab.textProperty().bind(webView.getEngine().titleProperty());
-
-            new Thread(() -> {
-                //ajout dans l'history
-                History history=new History(0, Date.valueOf(LocalDate.now()));
-                //complete here
-                while(tab.getText()==null){
-                    System.out.println("in infinite boucle");
-                    try {
-                        Thread.sleep(2000);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-                }
-
-                Page page=new Page(0,webView.getEngine().getTitle(),webView.getEngine().getLocation());
-                int i=new PageDA().save(page);
-                System.out.println(i);
-                Page pp=new PageDA().getOneById(i);
-                System.out.println(pp);
-                history.setPage(pp);
-                new HistoryDA().save(history);
-
-            })
-                    //.start()
-            ;
-*/
         }
 
     }
