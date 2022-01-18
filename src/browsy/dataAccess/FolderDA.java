@@ -28,7 +28,7 @@ public class FolderDA extends DataAccessAbs<Folder> {
 			statement = this.connection.createStatement();
 			result = statement.executeQuery(sql);
 			while(result.next()) {
-				folder = new Folder(result.getInt(0), result.getString(1));
+				folder = new Folder(result.getInt(COLS[0]), result.getString(COLS[1]));
 				folders.add(folder);
 			}
 		} catch (SQLException e) {
@@ -58,7 +58,10 @@ public class FolderDA extends DataAccessAbs<Folder> {
 				//previous WRONG:
 				//folder = new Folder(result.getInt(0), result.getString(1));
 				//new :
-				folder = new Folder(result.getInt(1), result.getString(2));
+				//				folder = new Folder(result.getInt(1), result.getString(2));
+				//new 
+				folder = new Folder(result.getInt(COLS[0]), result.getString(COLS[1]));
+
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -78,15 +81,15 @@ public class FolderDA extends DataAccessAbs<Folder> {
 		String sql = this.GET_ALL_LIKE.replace("{{TABLE_NAME}}", TABLE_NAME).replace("{{COL_NAME}}", COLS[1]);
 		PreparedStatement preparedStatement = null;
 		ResultSet result = null;
-		Folder Folder = null;
-		List<Folder> Folders = new ArrayList<Folder>();
+		Folder folder = null;
+		List<Folder> folders = new ArrayList<Folder>();
 
 		try {
 			preparedStatement = DAUtils.initializePreparedStatement(this.connection, sql, false, "%"+keyword+"%");
 			result = preparedStatement.executeQuery();
 			while(result.next()) {
-				Folder = new Folder(result.getInt(0), result.getString(1));
-				Folders.add(Folder);
+				folder = new Folder(result.getInt(COLS[0]), result.getString(COLS[1]));
+				folders.add(folder);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -95,7 +98,7 @@ public class FolderDA extends DataAccessAbs<Folder> {
 			DAUtils.closeRessources(result);
 			DAUtils.closeRessources(preparedStatement);
 		}
-		return Folders;
+		return folders;
 	}
 
 	@Override

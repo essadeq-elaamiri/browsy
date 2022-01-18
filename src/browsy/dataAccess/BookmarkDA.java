@@ -32,9 +32,9 @@ public class BookmarkDA extends DataAccessAbs<Bookmark>{
 			statement = this.connection.createStatement();
 			result = statement.executeQuery(sql);
 			while(result.next()) {
-				bookmark = new Bookmark(result.getInt(0), result.getDate(3));
-				page = pageDa.getOneById(result.getInt(1));
-				folder = folderDa.getOneById(result.getInt(2));
+				bookmark = new Bookmark(result.getInt(COLS[0]), result.getDate(COLS[3]));
+				page = pageDa.getOneById(result.getInt(COLS[1]));
+				folder = folderDa.getOneById(result.getInt(COLS[2]));
 				bookmark.setPage(page);
 				bookmark.setFolder(folder);
 
@@ -65,9 +65,9 @@ public class BookmarkDA extends DataAccessAbs<Bookmark>{
 			preparedStatement = DAUtils.initializePreparedStatement(connection, sql, false, id);
 			result = preparedStatement.executeQuery();
 			if(result.next()) {
-				bookmark = new Bookmark(result.getInt(0), result.getDate(3));
-				page = pageDa.getOneById(result.getInt(1));
-				folder = folderDa.getOneById(result.getInt(2));
+				bookmark = new Bookmark(result.getInt(COLS[0]), result.getDate(COLS[3]));
+				page = pageDa.getOneById(result.getInt(COLS[1]));
+				folder = folderDa.getOneById(result.getInt(COLS[2]));
 				bookmark.setPage(page);
 				bookmark.setFolder(folder);
 
@@ -101,9 +101,9 @@ public class BookmarkDA extends DataAccessAbs<Bookmark>{
 			preparedStatement = DAUtils.initializePreparedStatement(this.connection, sql, false, "%"+keyword+"%");
 			result = preparedStatement.executeQuery();
 			while(result.next()) {
-				bookmark = new Bookmark(result.getInt(0), result.getDate(3));
-				page = pageDa.getOneById(result.getInt(1));
-				folder = folderDa.getOneById(result.getInt(2));
+				bookmark = new Bookmark(result.getInt(COLS[0]), result.getDate(COLS[3]));
+				page = pageDa.getOneById(result.getInt(COLS[1]));
+				folder = folderDa.getOneById(result.getInt(COLS[2]));
 				bookmark.setPage(page);
 				bookmark.setFolder(folder);
 				bookmarks.add(bookmark);

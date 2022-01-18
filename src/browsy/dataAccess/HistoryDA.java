@@ -28,8 +28,8 @@ public class HistoryDA extends DataAccessAbs<History> {
 			statement = this.connection.createStatement();
 			result = statement.executeQuery(sql);
 			while(result.next()) {
-				history = new History(result.getInt(0), result.getDate(3));
-				page = pageDa.getOneById(result.getInt(1));
+				history = new History(result.getInt(COLS[0]), result.getDate(COLS[2]));
+				page = pageDa.getOneById(result.getInt(COLS[1]));
 				history.setPage(page);
 
 				histories.add(history);
@@ -57,8 +57,8 @@ public class HistoryDA extends DataAccessAbs<History> {
 			preparedStatement = DAUtils.initializePreparedStatement(connection, sql, false, id);
 			result = preparedStatement.executeQuery();
 			if(result.next()) {
-				history = new History(result.getInt(0), result.getDate(3));
-				page = pageDa.getOneById(result.getInt(1));
+				history = new History(result.getInt(COLS[0]), result.getDate(COLS[2]));
+				page = pageDa.getOneById(result.getInt(COLS[1]));
 				history.setPage(page);
 			}
 		} catch (SQLException e) {
@@ -88,8 +88,8 @@ public class HistoryDA extends DataAccessAbs<History> {
 			preparedStatement = DAUtils.initializePreparedStatement(this.connection, sql, false, "%"+keyword+"%");
 			result = preparedStatement.executeQuery();
 			while(result.next()) {
-				history = new History(result.getInt(0), result.getDate(2));
-				page = pageDa.getOneById(result.getInt(1));
+				history = new History(result.getInt(COLS[0]), result.getDate(COLS[2]));
+				page = pageDa.getOneById(result.getInt(COLS[1]));
 				history.setPage(page);
 				histories.add(history);
 			}

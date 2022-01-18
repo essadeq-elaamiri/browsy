@@ -30,13 +30,13 @@ public class DownloadDA extends DataAccessAbs<Download> {
 			result = statement.executeQuery(sql);
 			while(result.next()) {
 				download = new Download(
-						result.getInt(0),
-						result.getString(1),
-						result.getDate(2),
-						result.getString(3),
-						result.getString(4),
-						result.getDouble(5),
-						result.getString(6));
+						result.getInt(COLS[0]),
+						result.getString(COLS[1]),
+						result.getDate(COLS[2]),
+						result.getString(COLS[3]),
+						result.getString(COLS[4]),
+						result.getDouble(COLS[5]),
+						result.getString(COLS[6]));
 
 				downloads.add(download);
 			}
@@ -62,13 +62,13 @@ public class DownloadDA extends DataAccessAbs<Download> {
 			result = preparedStatement.executeQuery();
 			if(result.next()) {
 				download = new Download(
-						result.getInt(0),
-						result.getString(1),
-						result.getDate(2),
-						result.getString(3),
-						result.getString(4),
-						result.getDouble(5),
-						result.getString(6));
+						result.getInt(COLS[0]),
+						result.getString(COLS[1]),
+						result.getDate(COLS[2]),
+						result.getString(COLS[3]),
+						result.getString(COLS[4]),
+						result.getDouble(COLS[5]),
+						result.getString(COLS[6]));
 
 			}
 		} catch (SQLException e) {
@@ -101,13 +101,13 @@ public class DownloadDA extends DataAccessAbs<Download> {
 			result = preparedStatement.executeQuery();
 			while(result.next()) {
 				download = new Download(
-						result.getInt(0),
-						result.getString(1),
-						result.getDate(2),
-						result.getString(3),
-						result.getString(4),
-						result.getDouble(5),
-						result.getString(6));
+						result.getInt(COLS[0]),
+						result.getString(COLS[1]),
+						result.getDate(COLS[2]),
+						result.getString(COLS[3]),
+						result.getString(COLS[4]),
+						result.getDouble(COLS[5]),
+						result.getString(COLS[6]));
 				downloads.add(download);
 			}
 		} catch (SQLException e) {

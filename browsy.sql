@@ -34,7 +34,7 @@ CREATE TABLE `bookmark` (
   `id` int(11) NOT NULL,
   `pageId` int(11) DEFAULT NULL,
   `folderId` int(11) DEFAULT NULL,
-  `createdAt` date DEFAULT current_timestamp()
+  `createdAt` datetime DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 --
@@ -55,7 +55,7 @@ DROP TABLE IF EXISTS `download`;
 CREATE TABLE `download` (
   `id` int(11) NOT NULL,
   `name` varchar(255) COLLATE utf8_bin DEFAULT NULL,
-  `downloadedAt` date DEFAULT NULL,
+  `downloadedAt` datetime DEFAULT NULL,
   `locationInSystem` varchar(255) COLLATE utf8_bin DEFAULT NULL,
   `link` varchar(255) COLLATE utf8_bin DEFAULT NULL,
   `size` decimal(10,0) DEFAULT NULL,
@@ -91,7 +91,7 @@ DROP TABLE IF EXISTS `history`;
 CREATE TABLE `history` (
   `id` int(11) NOT NULL,
   `pageId` int(11) DEFAULT NULL,
-  `createdAt` date DEFAULT current_timestamp()
+  `createdAt` datetime DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 --
