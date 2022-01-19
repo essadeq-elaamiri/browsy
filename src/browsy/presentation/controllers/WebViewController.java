@@ -21,6 +21,8 @@ import javafx.scene.Parent;
 import javafx.scene.control.*;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.VBox;
 import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebHistory;
 import javafx.scene.web.WebView;
@@ -33,6 +35,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.sql.Date;
 import java.time.LocalDate;
+import java.util.List;
 import java.util.ResourceBundle;
 
 public class WebViewController implements Initializable {
@@ -76,6 +79,19 @@ public class WebViewController implements Initializable {
 
     @FXML
     private WebView webView;
+
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        initialiseSearch();
+        initialiseEngine();
+        loadPage();
+
+    }
+
+
+
+
 
     @FXML
     void OnRefresh(ActionEvent event) {
@@ -179,13 +195,7 @@ public class WebViewController implements Initializable {
             }).start();
         });
     }
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-        initialiseSearch();
-        initialiseEngine();
-        loadPage();
 
-    }
 
 
     public void addToHistory(){

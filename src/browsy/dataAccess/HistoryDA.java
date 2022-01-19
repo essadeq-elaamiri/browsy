@@ -38,7 +38,7 @@ public class HistoryDA extends DataAccessAbs<History> {
 			e.printStackTrace();
 		}
 		finally {
-			DAUtils.closeRessources(statement, connection);
+			DAUtils.closeRessources(statement);
 		}
 
 		return histories;

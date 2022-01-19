@@ -44,7 +44,7 @@ public class BookmarkDA extends DataAccessAbs<Bookmark>{
 			e.printStackTrace();
 		}
 		finally {
-			DAUtils.closeRessources(statement, connection);
+			DAUtils.closeRessources(statement);
 		}
 
 		return bookmarks;
@@ -169,7 +169,7 @@ public class BookmarkDA extends DataAccessAbs<Bookmark>{
 
 	@Override
 	public void update(int id, Bookmark newBookmark) {
-		String updates = COLS[1]+"=?, "+COLS[2]+"=? "+COLS[2]+"=? ";
+		String updates = COLS[1]+"=?, "+COLS[2]+"=?, "+COLS[3]+"=? ";
 		String sql = this.UPDATE.
 				replace("{{TABLE_NAME}}", TABLE_NAME).
 				replace("{{UPDATES}}", updates).

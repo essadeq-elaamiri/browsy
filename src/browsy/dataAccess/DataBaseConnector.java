@@ -14,8 +14,11 @@ public class DataBaseConnector {
 
 	static {
 		try {
-			Class.forName("com.mysql.cj.jdbc.Driver");
+			//Class.forName("com.mysql.cj.jdbc.Driver");
+			Class.forName("com.mysql.jdbc.Driver");
+			//com.mysql.jdbc.Driver"
 			connection = DriverManager.getConnection(URL+DB_NAME, DB_USERNAME, DB_PASSWORD);
+
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} catch (ClassNotFoundException e) {

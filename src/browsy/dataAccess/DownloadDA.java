@@ -44,7 +44,7 @@ public class DownloadDA extends DataAccessAbs<Download> {
 			e.printStackTrace();
 		}
 		finally {
-			DAUtils.closeRessources(statement, connection);
+			DAUtils.closeRessources(statement);
 		}
 
 		return downloads;

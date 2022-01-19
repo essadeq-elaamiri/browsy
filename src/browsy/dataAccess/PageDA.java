@@ -36,7 +36,7 @@ public class PageDA extends DataAccessAbs<Page> {
 			e.printStackTrace();
 		}
 		finally {
-			DAUtils.closeRessources(statement, connection);
+			DAUtils.closeRessources(statement);
 		}
 
 		return pages;
@@ -114,6 +114,7 @@ public class PageDA extends DataAccessAbs<Page> {
 		PreparedStatement preparedStatement = null;
 		boolean status = false;
 		int last_inserted_id = 0;
+		//System.out.println(this.connection == null);
 
 		try {
 			preparedStatement = DAUtils.initializePreparedStatement(this.connection, sql, true, page.getName(), page.getLink());

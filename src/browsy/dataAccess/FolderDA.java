@@ -36,7 +36,7 @@ public class FolderDA extends DataAccessAbs<Folder> {
 			e.printStackTrace();
 		}
 		finally {
-			DAUtils.closeRessources(statement, connection);
+			DAUtils.closeRessources(statement);
 		}
 
 		return folders;

@@ -1,5 +1,7 @@
 package browsy.dataAccess;
 
+import org.w3c.dom.ls.LSOutput;
+
 import java.sql.Connection;
 import java.util.List;
 
@@ -19,6 +21,7 @@ public abstract class DataAccessAbs<T> {
 	protected final String UPDATE = "UPDATE "+"{{TABLE_NAME}}"+" SET "+"{{UPDATES}}"+" WHERE "+"{{UPDATE_CONDITION_COL}}"+"=?";
 
 	protected Connection connection = DataBaseConnector.getConnexion();
+
 
 	public abstract List<T> getAll();
 	public abstract T getOneById(int id);

@@ -35,5 +35,8 @@
         <SOURCES />
       </library>
     </orderEntry>
+    <orderEntry type="library" name="javafx-swt" level="project" />
+    <orderEntry type="library" name="mysql-connector" level="project" />
+    <orderEntry type="library" name="fontawesomefx-8.2" level="project" />
   </component>
 </module>

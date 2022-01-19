@@ -160,7 +160,7 @@ public class DownloadThread extends Thread{
 			e.printStackTrace();
 		} catch (URISyntaxException e) {
 			// TODO Auto-generated catch block
-			System.out.println("Exception occured in filTitle URL.");
+			System.out.println("Exception occurred in filTitle URL.");
 			e.printStackTrace();
 		} 
 
