@@ -28,7 +28,7 @@ public class PageDA extends DataAccessAbs<Page> {
 			statement = this.connection.createStatement();
 			result = statement.executeQuery(sql);
 			while(result.next()) {
-				page = new Page(result.getInt(0), result.getString(1), result.getString(2));
+				page = new Page(result.getInt(COLS[0]), result.getString(COLS[1]), result.getString(COLS[2]));
 				pages.add(page);
 			}
 		} catch (SQLException e) {
@@ -53,7 +53,7 @@ public class PageDA extends DataAccessAbs<Page> {
 			preparedStatement = DAUtils.initializePreparedStatement(connection, sql, false, id);
 			result = preparedStatement.executeQuery();
 			if(result.next()) {
-				page = new Page(result.getInt(1), result.getString(2), result.getString(3));
+				page = new Page(result.getInt(COLS[0]), result.getString(COLS[1]), result.getString(COLS[2]));
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -87,7 +87,10 @@ public class PageDA extends DataAccessAbs<Page> {
 				//previous WRONG:
 				//page = new Page(result.getInt(0), result.getString(1), result.getString(2));
 				//new :
-				page = new Page(result.getInt(1), result.getString(2), result.getString(3));
+				//page = new Page(result.getInt(1), result.getString(2), result.getString(3));
+				//new of new
+				page = new Page(result.getInt(COLS[0]), result.getString(COLS[1]), result.getString(COLS[2]));
+
 				pages.add(page);
 			}
 		} catch (SQLException e) {
