@@ -16,7 +16,7 @@
 <children>
    <BorderPane layoutX="88.0" layoutY="47.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
       <top>
-         <HBox prefHeight="40.0" prefWidth="800.0" spacing="20.0" style="-fx-border-width: 0 0 1 0; -fx-border-color: gray;" BorderPane.alignment="CENTER">
+         <HBox prefHeight="40.0" prefWidth="800.0" spacing="20.0" style="-fx-border-width: 0 0 1 0; -fx-border-color: gray;" styleClass="primary-color" BorderPane.alignment="CENTER">
             <children>
                <Button fx:id="previousButton" mnemonicParsing="false" onAction="#onPrevious">
                   <graphic>
@@ -54,12 +54,16 @@
                      <String fx:value="button" />
                   </styleClass>
                </Button>
-               <HBox prefHeight="26.0" prefWidth="493.0" style="-fx-border-color: gray; -fx-border-radius: 10; -fx-background-radius: 10;" styleClass="primary-color">
+               <HBox style="-fx-border-color: gray; -fx-border-radius: 10; -fx-background-radius: 10;" styleClass="primary-color" HBox.hgrow="ALWAYS">
                   <children>
-                     <TextField fx:id="mainSearchField" onKeyReleased="#onSearchWebSite" prefHeight="26.0" prefWidth="473.0" styleClass="primary-color" />
-                     <Button fx:id="favoriteButton" mnemonicParsing="false" onAction="#onAddToFavorite" prefHeight="0.0" prefWidth="25.0">
+                     <TextField fx:id="mainSearchField" onKeyReleased="#onSearchWebSite" prefHeight="26.0" prefWidth="473.0" HBox.hgrow="ALWAYS">
+                           <styleClass>
+                              <String fx:value="primary-color" />
+                              <String fx:value="searchBar" />
+                           </styleClass></TextField>
+                     <Button fx:id="favoriteButton" alignment="CENTER_RIGHT" mnemonicParsing="false" onAction="#onAddToFavorite" prefHeight="0.0" prefWidth="25.0">
                         <graphic>
-                           <FontAwesomeIcon glyphName="BOOKMARK" />
+                           <FontAwesomeIcon fill="WHITE" glyphName="BOOKMARK" />
                         </graphic>
                         <styleClass>
                            <String fx:value="primary-color" />
@@ -85,9 +89,9 @@
                </Button>
                <MenuButton fx:id="settingsButton" mnemonicParsing="false">
                   <items>
-                     <MenuItem mnemonicParsing="false" text="History" onAction="#onHistory"/>
-                     <MenuItem mnemonicParsing="false" text="Bookmarks" onAction="#onBookmarks"/>
-                     <MenuItem mnemonicParsing="false" text="Downloads" onAction="#onDownloads"/>
+                     <MenuItem mnemonicParsing="false" onAction="#onHistory" text="History" />
+                     <MenuItem mnemonicParsing="false" onAction="#onBookmarks" text="Bookmarks" />
+                     <MenuItem mnemonicParsing="false" onAction="#onDownloads" text="Downloads" />
                   </items>
                   <graphic>
                      <FontAwesomeIcon glyphName="SLIDERS" />
@@ -95,6 +99,7 @@
                   <styleClass>
                      <String fx:value="button" />
                      <String fx:value="primary-color" />
+                        <String fx:value="menu-item" />
                   </styleClass>
                </MenuButton>
             </children>
