@@ -1,22 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import de.jensd.fx.glyphs.fontawesome.*?>
-<?import java.lang.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="500.0" prefWidth="800.0" stylesheets="@../assets/css/lightMode.css" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="browsy.presentation.controllers.MainController">
+<AnchorPane prefHeight="500.0" prefWidth="800.0" stylesheets="@../assets/css/lightMode.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="browsy.presentation.controllers.MainController">
    <children>
       <TabPane fx:id="tabPaneId" prefHeight="317.0" prefWidth="456.0" styleClass="primary-color" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
        <tabs>
           <Tab fx:id="addTab" styleClass="secondary-color">
                <graphic>
 
-                <Button fx:id="previousButton" mnemonicParsing="false" style="-fx-background-color: transparent; -fx-border-color: transparent;" onAction="#onAjoutTab">
+                <Button fx:id="previousButton" mnemonicParsing="false" onAction="#onAjoutTab" style="-fx-background-color: transparent; -fx-border-color: transparent;">
                    <graphic>
                       <FontAwesomeIcon glyphName="PLUS" size="10" text="" />
                    </graphic>
-                   
                 </Button>
                </graphic>
             
