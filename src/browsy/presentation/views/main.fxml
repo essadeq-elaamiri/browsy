@@ -12,14 +12,11 @@
           <Tab fx:id="addTab" styleClass="secondary-color">
                <graphic>
 
-                <Button fx:id="previousButton" mnemonicParsing="false" style="-fx-background-color: gray" onAction="#onAjoutTab">
+                <Button fx:id="previousButton" mnemonicParsing="false" style="-fx-background-color: transparent; -fx-border-color: transparent;" onAction="#onAjoutTab">
                    <graphic>
                       <FontAwesomeIcon glyphName="PLUS" size="10" text="" />
                    </graphic>
-                   <styleClass>
-                      <String fx:value="primary-color" />
-                      
-                   </styleClass>
+                   
                 </Button>
                </graphic>
             
