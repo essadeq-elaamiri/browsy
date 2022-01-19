@@ -21,7 +21,7 @@ import java.util.ResourceBundle;
 public class BookmarksController implements Initializable {
 
     @FXML
-    private VBox bookmarksItemsPane;
+    private GridPane bookmarksItemsPane;
 
     @FXML
     private ScrollPane bookmarksListPane;
@@ -64,11 +64,14 @@ public class BookmarksController implements Initializable {
         //retrieve data
         List<Bookmark> bookmarks = bookmarkDA.getAll();
         Label label = new Label("hello books");
+        int row = 1;
         if (!bookmarks.isEmpty()){
             for (Bookmark bookmark: bookmarks){
                 GridPane newItem = constructBookmarkItem(bookmark);
                 //append items to the VBox
-                this.bookmarksItemsPane.getChildren().add(newItem);
+                //this.bookmarksItemsPane.getChildren().add(newItem);
+                this.bookmarksItemsPane.addRow(row, newItem);
+                row++;
 
             }
         }

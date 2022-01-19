@@ -80,6 +80,7 @@ public class WebViewController implements Initializable {
     @FXML
     private WebView webView;
 
+    private final String  SEARCH_ENGINE_HOME = "https://duckduckgo.com";
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -114,7 +115,7 @@ public class WebViewController implements Initializable {
 
     @FXML
     void onHome(ActionEvent event) {
-        webView.getEngine().load("http://www.qwant.com");
+        webView.getEngine().load(SEARCH_ENGINE_HOME);
     }
 
     @FXML
@@ -158,7 +159,7 @@ public class WebViewController implements Initializable {
     }
 
     public void loadPage() {
-        webView.getEngine().load("https://www.qwant.com");
+        webView.getEngine().load(SEARCH_ENGINE_HOME );
     }
 
     public void initialiseSearch(){
@@ -181,7 +182,7 @@ public class WebViewController implements Initializable {
         });
 
         webView.getEngine().locationProperty().addListener((observableValue, s, t1) -> {
-            new MainDownload().startDownload(t1,webView.getEngine().getTitle());
+            new MainDownload().startDownload(t1,webView.getEngine().getTitle() == null ? "Default Title": webView.getEngine().getTitle());
             new Thread(() -> {
                 while(!webView.getEngine().getLoadWorker().getMessage().equals("Loading complete")){
                     try {
@@ -200,7 +201,7 @@ public class WebViewController implements Initializable {
 
     public void addToHistory(){
         History history=new History(0, Date.valueOf(LocalDate.now()));
-        Page page=new Page(0,webView.getEngine().getTitle(),webView.getEngine().getLocation());
+        Page page=new Page(0,webView.getEngine().getTitle() == null ? "Default Title": webView.getEngine().getTitle(),webView.getEngine().getLocation());
         int i=new PageDA().save(page);
         System.out.println(i);
         Page pp=new PageDA().getOneById(i);

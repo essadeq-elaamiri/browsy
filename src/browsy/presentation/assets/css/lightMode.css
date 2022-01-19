@@ -14,7 +14,7 @@
 }
 
 .favorite{
-    -fx-fill: red;
+    -fx-fill: #fc4747;
 }
 
 .glyph-icon {
@@ -55,6 +55,14 @@
     -fx-background-color: #eee;
 }
 
+.scroll-pane{
+    -fx-background-color: transparent;
+}
+
 .scroll-pane > .viewport{
+    -fx-background-color: transparent;
+}
+
+.bookmarkslistbox{
     -fx-background-color: transparent;
 }

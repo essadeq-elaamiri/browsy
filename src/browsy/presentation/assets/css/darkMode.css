@@ -10,12 +10,11 @@
     -fx-background-color: transparent;
     -fx-border-radius: 15px;
     -fx-background-radius: 15px;
-    -fx-border-color: #383838;
     -fx-text-fill: #FFF;
 }
 
 .favorite{
-    -fx-fill: red;
+    -fx-fill: #f84141;
 }
 
 .text{
@@ -45,4 +44,37 @@
 .searchBar{
     -fx-text-fill: #fff;
 }
+
+.bookmarkItem{
+    -fx-border-color: #eee;
+    -fx-background-color: #383838;
+    -fx-font-size: 10pt;
+    -fx-fill: #fff;
+    -fx-border-radius: 20px;
+    -fx-background-radius: 20px;
+    -fx-end-margin: 10px;
+    /*-fx-effect: dropshadow(three-pass-box, rgba(183, 183, 183, 0.8), 10, 0, 0, 0);*/
+    -fx-padding: 5 10 5 10;
+
+}
+
+.bookmarkItemBtn{
+    -fx-background-color: transparent;
+}
+
+.bookmarkItemBtn:hover{
+    -fx-background-color: #757474;
+}
+
+.scroll-pane{
+    -fx-background-color: #383838;
+}
+.scroll-pane > .viewport{
+    -fx-background-color: #383838;
+}
+
+.bookmarkslistbox{
+    -fx-background-color: #2B2B2B;
+}
+
 
