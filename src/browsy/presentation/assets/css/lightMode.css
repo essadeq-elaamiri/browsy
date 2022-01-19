@@ -7,18 +7,18 @@
 }
 
 .button{
+    -fx-background-color: transparent;
     -fx-border-radius: 15px;
     -fx-background-radius: 15px;
-    -fx-background-color: transparent;
     -fx-text-fill: #000;
 }
 
 .favorite{
-    -fx-fill: #fc3434;
+    -fx-fill: red;
 }
 
 .glyph-icon {
-    -fx-fill: #323232;
+    -fx-fill: #000;
 }
 
 .text{
@@ -32,25 +32,4 @@
 
 .tab {
     -fx-text-base-color: #000;
-}
-
-.bookmarkItem{
-    -fx-border-color: #eee;
-    -fx-background-color: #fff;
-    -fx-font-size: 10pt;
-    -fx-fill: #323232;
-    -fx-border-radius: 20px;
-    -fx-background-radius: 20px;
-    -fx-end-margin: 10px;
-    -fx-effect: dropshadow(three-pass-box, rgba(183, 183, 183, 0.8), 10, 0, 0, 0);
-    -fx-padding: 5 10 5 10;
-
-}
-
-.bookmarkItemBtn{
-    -fx-background-color: transparent;
-}
-
-.bookmarkItemBtn:hover{
-    -fx-border-color: #343434;
 }
