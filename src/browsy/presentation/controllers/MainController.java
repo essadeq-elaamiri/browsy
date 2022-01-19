@@ -1,9 +1,11 @@
 package browsy.presentation.controllers;
 
+import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon;
 import java.io.IOException;
 import java.net.URL;
+import javafx.scene.Parent;
 import java.util.ResourceBundle;
-
+import javafx.scene.control.Button;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -42,8 +44,19 @@ public class MainController implements Initializable {
 		fxmlLoader.setLocation(this.getClass().getResource("/browsy/presentation/views/webView.fxml"));
 		Parent root = fxmlLoader.load();
 		 */
-
 		Tab tab=new Tab();
+		
+		FontAwesomeIcon closeIcon = new FontAwesomeIcon();
+        	closeIcon.setGlyphName("TIMES");
+        	Button closebutton = new Button();
+        	closebutton.getStyleClass().add("button");
+        	closebutton.setText("");
+        	closebutton.setGraphic(closeIcon);
+        	closebutton.setOnAction(actionEvent -> {
+                //TODO close Tab
+       	 	});
+        	tab.getStyleClass().addAll("primary-color", "tab");
+		tab.setGraphic(closebutton);
 		tab.setText("Home");
 		tab.setContent(root);
 		tabPaneId.getTabs().add(tabPaneId.getTabs().size()-1,tab);
