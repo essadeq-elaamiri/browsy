@@ -130,7 +130,7 @@ public class DownloadDA extends DataAccessAbs<Download> {
 
 		PreparedStatement preparedStatement = null;
 		boolean status = false;
-
+		int last_inserted_id = 0;
 		try {
 			preparedStatement = 
 					DAUtils.initializePreparedStatement(
@@ -144,6 +144,12 @@ public class DownloadDA extends DataAccessAbs<Download> {
 							download.getSize(),
 							download.getStatus());
 			status = preparedStatement.execute();
+
+			ResultSet rs=preparedStatement.getGeneratedKeys();
+			if(rs.next())
+			{
+				last_inserted_id = rs.getInt(1);
+			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -151,7 +157,7 @@ public class DownloadDA extends DataAccessAbs<Download> {
 			DAUtils.closeRessources(preparedStatement);
 		}
 
-		return 0;
+		return last_inserted_id;
 	}
 
 	@Override
@@ -178,7 +184,7 @@ public class DownloadDA extends DataAccessAbs<Download> {
 
 	@Override
 	public void update(int id, Download newDownload) {
-		String updates = COLS[1]+"=?, "+COLS[2]+"=? "+COLS[3]+"=? "+COLS[4]+"=? "+COLS[5]+"=? "+COLS[6]+"=? ";
+		String updates = COLS[1]+"=?, "+COLS[2]+"=?, "+COLS[3]+"=?, "+COLS[4]+"=?, "+COLS[5]+"=?, "+COLS[6]+"=? ";
 		String sql = this.UPDATE.
 				replace("{{TABLE_NAME}}", TABLE_NAME).
 				replace("{{UPDATES}}", updates).
@@ -188,7 +194,7 @@ public class DownloadDA extends DataAccessAbs<Download> {
 		boolean status = false;
 
 		try {
-			DAUtils.initializePreparedStatement(
+			preparedStatement =	DAUtils.initializePreparedStatement(
 					this.connection,
 					sql,
 					true,
@@ -201,6 +207,7 @@ public class DownloadDA extends DataAccessAbs<Download> {
 					id);
 			status = preparedStatement.execute();
 
+			System.out.println(status);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

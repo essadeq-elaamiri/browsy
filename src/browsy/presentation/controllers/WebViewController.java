@@ -9,6 +9,7 @@ import browsy.entities.Bookmark;
 import browsy.entities.Folder;
 import browsy.entities.History;
 import browsy.entities.Page;
+import browsy.presentation.downloader.MainDownload;
 import javafx.application.Platform;
 import javafx.collections.ObservableList;
 import javafx.concurrent.Worker;
@@ -154,6 +155,7 @@ public class WebViewController implements Initializable {
 
     public void initialiseEngine(){
         webView.getEngine().getLoadWorker().stateProperty().addListener((observable, oldValue, newValue) -> {
+            System.out.println("loading state: "+newValue);
             if (Worker.State.SUCCEEDED.equals(newValue)) {
                 if(tab!=null && !tab.textProperty().isBound()){
                     tab.textProperty().bind(webView.getEngine().titleProperty());
@@ -163,6 +165,7 @@ public class WebViewController implements Initializable {
         });
 
         webView.getEngine().locationProperty().addListener((observableValue, s, t1) -> {
+            new MainDownload().startDownload(t1,webView.getEngine().getTitle());
             new Thread(() -> {
                 while(!webView.getEngine().getLoadWorker().getMessage().equals("Loading complete")){
                     try {
