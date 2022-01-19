@@ -9,8 +9,7 @@
 .button{
     -fx-border-radius: 15px;
     -fx-background-radius: 15px;
-
-
+    -fx-background-color: transparent;
     -fx-text-fill: #000;
 }
 
@@ -24,6 +23,15 @@
 
 .text{
     -fx-font-family: 'Ubuntu', sans-serif;
+    -fx-text-fill: #000;
+}
+
+.searchBar{
+    -fx-text-fill: #000;
+}
+
+.tab {
+    -fx-text-base-color: #000;
 }
 
 .bookmarkItem{
