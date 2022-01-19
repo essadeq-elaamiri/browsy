@@ -11,9 +11,13 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
+<<<<<<< HEAD
 <?import javafx.scene.control.ScrollPane?>
 
 <AnchorPane prefHeight="422.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="browsy.presentation.controllers.BookmarksController">
+=======
+<AnchorPane prefHeight="422.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="browsy.presentation.controllers.MainController">
+>>>>>>> 8b93524 (Update bookmarks.fxml)
    <children>
       <BorderPane layoutX="200.0" layoutY="70.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <left>
@@ -24,10 +28,18 @@
                <children>
                   <HBox alignment="CENTER" prefHeight="40.0" prefWidth="614.0">
                      <children>
+<<<<<<< HEAD
                         <TextField fx:id="searchField" onAction="#onSearchFieldAction" prefHeight="26.0" prefWidth="313.0" promptText="Search" style="-fx-border-color: gray; -fx-border-radius: 15;" styleClass="primary-color">
+=======
+                        <TextField fx:id="searchField" prefHeight="26.0" prefWidth="313.0" promptText="Search" style="-fx-border-color: gray; -fx-border-radius: 15;">
+>>>>>>> 8b93524 (Update bookmarks.fxml)
                            <padding>
                               <Insets left="10.0" right="10.0" />
                            </padding>
+                           <styleClass>
+                              <String fx:value="primary-color" />
+                              <String fx:value="searchBar" />
+                           </styleClass>
                         </TextField>
                      </children>
                   </HBox>
