@@ -1,13 +1,13 @@
 package browsy.presentation.controllers;
 
+import browsy.dataAccess.HistoryDA;
 import browsy.entities.History;
+import browsy.presentation.utils.AlertMaker;
 import browsy.presentation.utils.WebViewInitializer;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.Tab;
-import javafx.scene.control.TabPane;
+import javafx.scene.control.*;
+import javafx.scene.layout.GridPane;
 
 import java.io.IOException;
 
@@ -21,8 +21,18 @@ public class HistoryItemController {
         this.webViewInitializer.setTabPane(tabPane);
     }
 
+    private int row;
+    private GridPane gridPane;
+    public void setGrid(int row, GridPane gridPane){
+        this.row=row;
+        this.gridPane=gridPane;
+    }
     @FXML
     private Button deleteHistory;
+
+
+    @FXML
+    private GridPane gridPaneId;
 
     @FXML
     private Label pageDateTime;
@@ -36,6 +46,16 @@ public class HistoryItemController {
     private History history;
     @FXML
     void onDeleteHistoryBtnClicked(ActionEvent event)  {
+        AlertMaker alert=new AlertMaker();
+        AlertMaker.sendAlert(Alert.AlertType.CONFIRMATION,"Warning","deleing history","are you sure ?")
+                .ifPresent(buttonType -> {
+                    if(buttonType==ButtonType.OK){
+                        new HistoryDA().delete(history.getId());
+                        //gridPane.getChildren().remove(row-1);
+                        gridPane.getChildren().remove(gridPaneId);
+                    }
+                    else if(buttonType==ButtonType.CANCEL);
+                });
 
     }
 

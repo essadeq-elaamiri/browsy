@@ -12,7 +12,6 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.GridPane;
-
 import java.io.IOException;
 import java.net.URL;
 import java.util.List;
@@ -79,17 +78,18 @@ public class HistoryController implements Initializable {
         int row = 1;
         if (!histories.isEmpty()){
             for (History history: histories){
-                GridPane newItem = constructHistoryItem(history);
+                GridPane newItem = constructHistoryItem(history,row,this.historyItemsPane);
                 //append items to the VBox
                 //this.bookmarksItemsPane.getChildren().add(newItem);
                 this.historyItemsPane.addRow(row, newItem);
+
                 row++;
 
             }
         }
     }
 
-    private GridPane constructHistoryItem(History history) throws IOException {
+    private GridPane constructHistoryItem(History history,int row,GridPane gridPane) throws IOException {
         //get template
         FXMLLoader fxmlLoader = new FXMLLoader(this.getClass().getResource("/browsy/presentation/views/historyItem.fxml"));
         GridPane item = fxmlLoader.load();
@@ -109,6 +109,7 @@ public class HistoryController implements Initializable {
             itemController.setWebViewInitializer(webViewInitializer.getTab(), webViewInitializer.getTabPane());
         }).start();
 
+        itemController.setGrid(row,gridPane);
         return item;
     }
 

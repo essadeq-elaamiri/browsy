@@ -229,52 +229,14 @@ public class WebViewController implements Initializable {
     @FXML
     public void onHistory(ActionEvent actionEvent) throws IOException {
         webViewInitializer.initializeSettingsPages("history");
-/*
-        FXMLLoader fxmlLoader = new FXMLLoader(this.getClass().getResource("/browsy/presentation/views/history.fxml"));
-        Parent root = fxmlLoader.load();
-        Tab tab=new Tab();
-        tab.setText("History");
-        tab.setContent(root);
-        tabPane.getTabs().add(tabPane.getTabs().size()-1,tab);
-        tabPane.getSelectionModel().select(tabPane.getTabs().size()-2);
-
-        HistoryController historyController=fxmlLoader.getController();
-        historyController.setWebViewInitializer(tabPane.getTabs().get(tabPane.getTabs().size()-2),tabPane);
-
- */
-        //historyController.setTabPane(tabPane);
-        //root.setUserData(tabPaneId.getTabs().get(tabPaneId.getTabs().size()-2));
     }
     @FXML
     public void onBookmarks(ActionEvent actionEvent) throws IOException {
         webViewInitializer.initializeSettingsPages("bookmarks");
-/*
-        FXMLLoader fxmlLoader = new FXMLLoader(this.getClass().getResource("/browsy/presentation/views/bookmarks.fxml"));
-        Parent root = fxmlLoader.load();
-        //Parent root = FXMLLoader.load(this.getClass().getResource("/browsy/presentation/views/webView.fxml"));
-        Tab tab=new Tab();
-        tab.setText("Bookmarks");
-        tab.setContent(root);
-        tabPane.getTabs().add(tabPane.getTabs().size()-1,tab);
-        tabPane.getSelectionModel().select(tabPane.getTabs().size()-2);
-*/
+
     }
     @FXML
     public void onDownloads(ActionEvent actionEvent) throws IOException {
         webViewInitializer.initializeSettingsPages("downloads");
-/*
-        FXMLLoader fxmlLoader = new FXMLLoader(this.getClass().getResource("/browsy/presentation/views/downloads.fxml"));
-        Parent root = fxmlLoader.load();
-        //Parent root = FXMLLoader.load(this.getClass().getResource("/browsy/presentation/views/webView.fxml"));
-        Tab tab=new Tab();
-        tab.setText("Downloads");
-        tab.setContent(root);
-        tabPane.getTabs().add(tabPane.getTabs().size()-1,tab);
-        tabPane.getSelectionModel().select(tabPane.getTabs().size()-2);
-        //((WebViewController)fxmlLoader.getController()).setTab(tabPane.getTabs().get(tabPane.getTabs().size()-2));
-        //root.setUserData(tabPaneId.getTabs().get(tabPaneId.getTabs().size()-2));
-
-
- */
     }
 }

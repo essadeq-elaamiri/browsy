@@ -60,9 +60,6 @@ public class MainController implements Initializable {
         tabPaneId.getSelectionModel().select(tabPaneId.getTabs().size()-2);
         WebViewController webViewController=fxmlLoader.getController();
         webViewController.setWebViewInitializer(tabPaneId.getTabs().get(tabPaneId.getTabs().size()-2),tabPaneId);
-        //((WebViewController)fxmlLoader.getController()).setTab(tabPaneId.getTabs().get(tabPaneId.getTabs().size()-2));
-        //((WebViewController)fxmlLoader.getController()).setTabPane(tabPaneId);
-        //root.setUserData(tabPaneId.getTabs().get(tabPaneId.getTabs().size()-2));
     }
 
     public void onAjoutTab(ActionEvent actionEvent) {
