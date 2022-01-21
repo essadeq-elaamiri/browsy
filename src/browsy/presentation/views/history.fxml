@@ -4,12 +4,14 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.DatePicker?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
 <AnchorPane prefHeight="422.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="browsy.presentation.controllers.HistoryController">
@@ -18,19 +20,19 @@
          <left>
             <VBox alignment="CENTER" prefHeight="422.0" prefWidth="166.0" spacing="20.0" style="-fx-border-color: gray; -fx-border-width: 0 1 0 0;" styleClass="primary-color" BorderPane.alignment="CENTER">
                <children>
-                  <Button fx:id="todayHistoryButton" mnemonicParsing="false" text="Today">
+                  <Button fx:id="todayHistoryButton" mnemonicParsing="false" onAction="#showTodayHistory" text="Today">
                      <styleClass>
                         <String fx:value="button" />
                         <String fx:value="primary-color" />
                      </styleClass>
                   </Button>
-                  <Button fx:id="yesterdayHistoryButton" mnemonicParsing="false" text="Yesterday">
+                  <Button fx:id="yesterdayHistoryButton" mnemonicParsing="false" onAction="#showYesterdayHistory" text="Yesterday">
                      <styleClass>
                         <String fx:value="button" />
                         <String fx:value="primary-color" />
                      </styleClass>
                   </Button>
-                  <Button fx:id="olderHistoryButton" mnemonicParsing="false" text="Older">
+                  <Button fx:id="olderHistoryButton" mnemonicParsing="false" onAction="#showOlderHistory" text="Older">
                      <styleClass>
                         <String fx:value="button" />
                         <String fx:value="primary-color" />
@@ -43,7 +45,7 @@
                <children>
                   <HBox alignment="CENTER" prefHeight="40.0" prefWidth="614.0" spacing="10.0">
                      <children>
-                        <TextField fx:id="searchField" prefHeight="26.0" prefWidth="251.0" promptText="Search" style="-fx-border-color: gray; -fx-border-radius: 15;">
+                        <TextField fx:id="searchField" onKeyReleased="#onSearchByName" prefHeight="26.0" prefWidth="251.0" promptText="Search" style="-fx-border-color: gray; -fx-border-radius: 15;">
                            <padding>
                               <Insets left="10.0" right="10.0" />
                            </padding>
@@ -58,7 +60,7 @@
                            </HBox.margin>
                         </DatePicker>
                         <DatePicker fx:id="toDatePicker" prefHeight="26.0" prefWidth="100.0" promptText="To" />
-                        <Button fx:id="findButton" mnemonicParsing="false" prefHeight="26.0" prefWidth="75.0" style="-fx-border-color: gray;" text="Find">
+                        <Button fx:id="findButton" mnemonicParsing="false" onAction="#onFindHistory" prefHeight="26.0" prefWidth="75.0" style="-fx-border-color: gray;" text="Find">
                            <styleClass>
                               <String fx:value="primary-color" />
                               <String fx:value="button" />
@@ -68,7 +70,7 @@
                   </HBox>
                   <HBox alignment="CENTER_RIGHT" prefHeight="40.0" prefWidth="614.0">
                      <children>
-                        <Button fx:id="clearButton" mnemonicParsing="false" prefHeight="27.0" prefWidth="89.0" style="-fx-border-color: gray;" text="Clear history">
+                        <Button fx:id="clearButton" mnemonicParsing="false" onAction="#onClearHistory" prefHeight="27.0" prefWidth="89.0" style="-fx-border-color: gray;" text="Clear history">
                            <styleClass>
                               <String fx:value="button" />
                               <String fx:value="primary-color" />
@@ -79,19 +81,18 @@
                         <Insets top="10.0" />
                      </VBox.margin>
                   </HBox>
-                  <VBox fx:id="historyByDate" prefHeight="144.0" prefWidth="614.0">
-                     <children>
-                        <HBox prefHeight="23.0" prefWidth="614.0" style="-fx-border-color: gray; -fx-border-width: 0 0 1 0;">
-                           <children>
-                              <Label fx:id="dateLabel" prefHeight="18.0" prefWidth="98.0" text="Date" />
-                           </children>
-                           <VBox.margin>
-                              <Insets bottom="10.0" />
-                           </VBox.margin>
-                        </HBox>
-                        <ListView fx:id="historyList" prefHeight="191.0" prefWidth="614.0" styleClass="primary-color" />
-                     </children>
-                  </VBox>
+                  <ScrollPane fx:id="historyListPane" prefWidth="614.0">
+                     <content>
+                        <GridPane fx:id="historyItemsPane" styleClass="bookmarkslistbox">
+                           <columnConstraints>
+                              <ColumnConstraints hgrow="ALWAYS" minWidth="10.0" prefWidth="100.0" />
+                           </columnConstraints>
+                           <rowConstraints>
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                           </rowConstraints>
+                        </GridPane>
+                     </content>
+                  </ScrollPane>
                </children>
                <padding>
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />

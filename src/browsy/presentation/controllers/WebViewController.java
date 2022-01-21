@@ -10,6 +10,7 @@ import browsy.entities.Folder;
 import browsy.entities.History;
 import browsy.entities.Page;
 import browsy.presentation.downloader.MainDownload;
+import browsy.presentation.utils.WebViewInitializer;
 import javafx.application.Platform;
 import javafx.collections.ObservableList;
 import javafx.concurrent.Worker;
@@ -41,18 +42,12 @@ import java.util.ResourceBundle;
 public class WebViewController implements Initializable {
 
 
-    private Tab tab;
+    private WebViewInitializer webViewInitializer=new WebViewInitializer();
 
-    public void setTab(Tab tab){
-        this.tab=tab;
+    public void setWebViewInitializer(Tab tab,TabPane tabPane) {
+        this.webViewInitializer.setTab(tab);
+        this.webViewInitializer.setTabPane(tabPane);
     }
-
-    private TabPane tabPane;
-
-    public void setTabPane(TabPane tabPane){
-        this.tabPane=tabPane;
-    }
-
     @FXML
     private Button favoriteButton;
 
@@ -86,7 +81,7 @@ public class WebViewController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         initialiseSearch();
         initialiseEngine();
-        loadPage();
+        loadPage(SEARCH_ENGINE_HOME);
 
     }
 
@@ -158,8 +153,8 @@ public class WebViewController implements Initializable {
         }
     }
 
-    public void loadPage() {
-        webView.getEngine().load(SEARCH_ENGINE_HOME );
+    public void loadPage(String link) {
+        webView.getEngine().load(link);
     }
 
     public void initialiseSearch(){
@@ -174,8 +169,8 @@ public class WebViewController implements Initializable {
         webView.getEngine().getLoadWorker().stateProperty().addListener((observable, oldValue, newValue) -> {
             System.out.println("loading state: "+newValue);
             if (Worker.State.SUCCEEDED.equals(newValue)) {
-                if(tab!=null && !tab.textProperty().isBound()){
-                    tab.textProperty().bind(webView.getEngine().titleProperty());
+                if(webViewInitializer.getTab()!=null && !webViewInitializer.getTab().textProperty().isBound()){
+                    webViewInitializer.getTab().textProperty().bind(webView.getEngine().titleProperty());
                     mainSearchField.textProperty().bind(webView.getEngine().locationProperty());
                 }
             }
@@ -233,21 +228,27 @@ public class WebViewController implements Initializable {
     }
     @FXML
     public void onHistory(ActionEvent actionEvent) throws IOException {
-
+        webViewInitializer.initializeSettingsPages("history");
+/*
         FXMLLoader fxmlLoader = new FXMLLoader(this.getClass().getResource("/browsy/presentation/views/history.fxml"));
         Parent root = fxmlLoader.load();
-        //Parent root = FXMLLoader.load(this.getClass().getResource("/browsy/presentation/views/webView.fxml"));
         Tab tab=new Tab();
         tab.setText("History");
         tab.setContent(root);
         tabPane.getTabs().add(tabPane.getTabs().size()-1,tab);
         tabPane.getSelectionModel().select(tabPane.getTabs().size()-2);
-        //((WebViewController)fxmlLoader.getController()).setTab(tabPane.getTabs().get(tabPane.getTabs().size()-2));
+
+        HistoryController historyController=fxmlLoader.getController();
+        historyController.setWebViewInitializer(tabPane.getTabs().get(tabPane.getTabs().size()-2),tabPane);
+
+ */
+        //historyController.setTabPane(tabPane);
         //root.setUserData(tabPaneId.getTabs().get(tabPaneId.getTabs().size()-2));
     }
     @FXML
     public void onBookmarks(ActionEvent actionEvent) throws IOException {
-
+        webViewInitializer.initializeSettingsPages("bookmarks");
+/*
         FXMLLoader fxmlLoader = new FXMLLoader(this.getClass().getResource("/browsy/presentation/views/bookmarks.fxml"));
         Parent root = fxmlLoader.load();
         //Parent root = FXMLLoader.load(this.getClass().getResource("/browsy/presentation/views/webView.fxml"));
@@ -256,11 +257,12 @@ public class WebViewController implements Initializable {
         tab.setContent(root);
         tabPane.getTabs().add(tabPane.getTabs().size()-1,tab);
         tabPane.getSelectionModel().select(tabPane.getTabs().size()-2);
-
+*/
     }
     @FXML
     public void onDownloads(ActionEvent actionEvent) throws IOException {
-
+        webViewInitializer.initializeSettingsPages("downloads");
+/*
         FXMLLoader fxmlLoader = new FXMLLoader(this.getClass().getResource("/browsy/presentation/views/downloads.fxml"));
         Parent root = fxmlLoader.load();
         //Parent root = FXMLLoader.load(this.getClass().getResource("/browsy/presentation/views/webView.fxml"));
@@ -272,5 +274,7 @@ public class WebViewController implements Initializable {
         //((WebViewController)fxmlLoader.getController()).setTab(tabPane.getTabs().get(tabPane.getTabs().size()-2));
         //root.setUserData(tabPaneId.getTabs().get(tabPaneId.getTabs().size()-2));
 
+
+ */
     }
 }

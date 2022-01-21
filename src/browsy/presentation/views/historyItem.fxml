@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+
+<GridPane minWidth="800.0" styleClass="bookmarkItem" stylesheets="@../assets/css/lightMode.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="browsy.presentation.controllers.HistoryItemController">
+   <columnConstraints>
+      <ColumnConstraints hgrow="SOMETIMES" maxWidth="484.0" minWidth="10.0" prefWidth="475.0" />
+      <ColumnConstraints hgrow="SOMETIMES" maxWidth="299.0" minWidth="10.0" prefWidth="168.0" />
+      <ColumnConstraints hgrow="SOMETIMES" maxWidth="299.0" minWidth="10.0" prefWidth="39.0" />
+      <ColumnConstraints hgrow="SOMETIMES" maxWidth="299.0" minWidth="10.0" prefWidth="41.0" />
+   </columnConstraints>
+   <rowConstraints>
+      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+   </rowConstraints>
+   <children>
+      <Label fx:id="pageTitle" prefHeight="22.0" prefWidth="306.0" text="Titra de page">
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets></Label>
+      <Label fx:id="pageDateTime" text="2022-06-15 15:55" GridPane.columnIndex="1" />
+      <Button fx:id="deleteHistory" mnemonicParsing="false" onAction="#onDeleteHistoryBtnClicked" styleClass="bookmarkItemBtn" GridPane.columnIndex="3">
+         <graphic>
+            <FontAwesomeIcon glyphName="TRASH" />
+         </graphic>
+      </Button>
+      <Button fx:id="visitPageBtn" mnemonicParsing="false" onAction="#onVisitPageBtnClicked" styleClass="bookmarkItemBtn" GridPane.columnIndex="2">
+         <graphic>
+            <FontAwesomeIcon glyphName="EXTERNAL_LINK" />
+         </graphic>
+      </Button>
+   </children>
+</GridPane>
