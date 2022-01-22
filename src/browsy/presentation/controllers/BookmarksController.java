@@ -11,6 +11,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 
@@ -73,7 +74,8 @@ public class BookmarksController implements Initializable {
 
     List<Bookmark> listSearch=new ArrayList<>();
     @FXML
-    void onSearchByName(ActionEvent event) throws IOException {
+    void onSearchByName(KeyEvent event) throws IOException {
+
         List<Page> pages=new PageDA().getAllByName(searchField.getText());
         System.out.println("search : " +searchField.getText());
         System.out.println("size ="+pages.size());
