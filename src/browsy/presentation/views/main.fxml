@@ -10,7 +10,7 @@
    <children>
       <TabPane fx:id="tabPaneId" prefHeight="317.0" prefWidth="456.0" styleClass="primary-color" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
        <tabs>
-          <Tab fx:id="addTab" styleClass="secondary-color">
+          <Tab fx:id="addTab" style="-fx-pref-width: 40;" styleClass="secondary-color">
                <graphic>
 
                 <Button fx:id="previousButton" mnemonicParsing="false" onAction="#onAjoutTab" style="-fx-background-color: transparent; -fx-border-color: transparent;">

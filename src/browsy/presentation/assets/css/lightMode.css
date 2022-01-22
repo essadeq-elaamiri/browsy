@@ -32,6 +32,7 @@
 
 .tab {
     -fx-text-base-color: #000;
+    -fx-pref-width: 150px;
 }
 
 .bookmarkItem{

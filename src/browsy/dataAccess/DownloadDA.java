@@ -86,7 +86,7 @@ public class DownloadDA extends DataAccessAbs<Download> {
 
 	@Override
 	public List<Download> getAllByKeyword(String keyword) { //by name
-		String sql = this.GET_ALL_LIKE.replace("{{TABLE_NAME}}", TABLE_NAME).replace("{{COL_NAME}}", COLS[3]);
+		String sql = this.GET_ALL_LIKE.replace("{{TABLE_NAME}}", TABLE_NAME).replace("{{COL_NAME}}", COLS[1]);
 		PreparedStatement preparedStatement = null;
 		ResultSet result = null;
 		Download download = null;

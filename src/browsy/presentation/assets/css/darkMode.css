@@ -39,6 +39,8 @@
 
 .tab{
     -fx-text-base-color: #fff;
+    -fx-pref-width: 150px;
+
 }
 
 .searchBar{

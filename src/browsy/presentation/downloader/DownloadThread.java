@@ -5,6 +5,10 @@ package browsy.presentation.downloader;
 
 import browsy.dataAccess.DownloadDA;
 import browsy.entities.Download;
+import browsy.presentation.utils.AlertMaker;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
+import javafx.scene.layout.GridPane;
 
 import javax.net.ssl.HttpsURLConnection;
 import javax.net.ssl.SSLHandshakeException;
@@ -13,6 +17,7 @@ import java.net.*;
 import java.nio.file.Paths;
 import java.sql.Date;
 import java.time.LocalDate;
+import java.util.Locale;
 
 
 public class DownloadThread extends Thread{
@@ -104,7 +109,7 @@ public class DownloadThread extends Thread{
 				new Notification();
 				System.out.println("Download started on link  "+url);
 				//DownloadDatabase.insertDownload(url, title, "Downloaded", 1);
-				Download download=new Download(0,title, Date.valueOf(LocalDate.now()),filePath,url,0,"Downloading");
+				Download download=new Download(0,title.toLowerCase(Locale.ROOT), Date.valueOf(LocalDate.now()),filePath,url,0,"Downloading");
 				int id=new DownloadDA().save(download);
 				BufferedInputStream in = new BufferedInputStream(connection.getInputStream()); // open the input stream on the established tcp connection.
 				FileOutputStream out = new FileOutputStream(createFile(contentType,url)); // create a file and open the output stream to write on file.
@@ -136,7 +141,7 @@ public class DownloadThread extends Thread{
 			}
 
 		}catch(SocketTimeoutException e){
-			System.out.println("Connection is not establishs...");
+			System.out.println("Connection is not establishing...");
 		}
 		catch(FileNotFoundException e){
 			System.err.println("Error While Downloading : file not found . ");

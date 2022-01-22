@@ -19,6 +19,7 @@ public class MainApplication extends Application {
 			Parent root = fxmlLoader.load();
 			Scene scene = new Scene(root);
 			primaryStage.setScene(scene);
+			primaryStage.setMaximized(true);
 			primaryStage.centerOnScreen();
 			primaryStage.getIcons().add(new Image("/browsy/presentation/assets/img/icon.png"));
 			MainController cont=fxmlLoader.getController();

@@ -52,7 +52,7 @@ public class WebViewInitializer {
         closebutton.setText("");
         closebutton.setGraphic(closeIcon);
         closebutton.setOnAction(actionEvent -> {
-            //TODO close Tab
+            tabPane.getTabs().remove(tab);
         });
         tab.getStyleClass().addAll("primary-color", "tab");
         tab.setGraphic(closebutton);
@@ -90,7 +90,7 @@ public class WebViewInitializer {
         closebutton.setText("");
         closebutton.setGraphic(closeIcon);
         closebutton.setOnAction(actionEvent -> {
-            //TODO close Tab
+            tabPane.getTabs().remove(tab);
         });
         tab.getStyleClass().addAll("primary-color", "tab");
         tab.setText("Page");
