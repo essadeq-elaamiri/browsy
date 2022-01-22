@@ -21,12 +21,6 @@ public class HistoryItemController {
         this.webViewInitializer.setTabPane(tabPane);
     }
 
-    private int row;
-    private GridPane gridPane;
-    public void setGrid(int row, GridPane gridPane){
-        this.row=row;
-        this.gridPane=gridPane;
-    }
     @FXML
     private Button deleteHistory;
 
@@ -51,8 +45,8 @@ public class HistoryItemController {
                 .ifPresent(buttonType -> {
                     if(buttonType==ButtonType.OK){
                         new HistoryDA().delete(history.getId());
-                        //gridPane.getChildren().remove(row-1);
-                        gridPane.getChildren().remove(gridPaneId);
+                        GridPane parent = (GridPane) gridPaneId.getParent();
+                        parent.getChildren().remove(gridPaneId);
                     }
                     else if(buttonType==ButtonType.CANCEL);
                 });

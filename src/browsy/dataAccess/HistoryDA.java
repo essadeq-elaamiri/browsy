@@ -73,9 +73,36 @@ public class HistoryDA extends DataAccessAbs<History> {
 
 		return history;
 	}
+	public List<History> getAllByPageId(int keyword) { //by page Id
+		String sql = "SELECT * FROM history WHERE pageId=?";
+		PreparedStatement preparedStatement = null;
+		ResultSet result = null;
+		History history ;
+		Page page;
+		PageDA pageDa = new PageDA();
+		List<History> histories = new ArrayList<History>();
+
+		try {
+			preparedStatement = DAUtils.initializePreparedStatement(this.connection, sql, false, keyword);
+			result = preparedStatement.executeQuery();
+			while(result.next()) {
+				history = new History(result.getInt(COLS[0]), result.getDate(COLS[2]));
+				page = pageDa.getOneById(result.getInt(COLS[1]));
+				history.setPage(page);
+				histories.add(history);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		finally {
+			DAUtils.closeRessources(result);
+			DAUtils.closeRessources(preparedStatement);
+		}
+		return histories;
+	}
 
 	@Override
-	public List<History> getAllByKeyword(String keyword) { //by name
+	public List<History> getAllByKeyword(String keyword) { //by address // not working
 		String sql = this.GET_ALL_LIKE.replace("{{TABLE_NAME}}", TABLE_NAME).replace("{{COL_NAME}}", COLS[2]);
 		PreparedStatement preparedStatement = null;
 		ResultSet result = null;

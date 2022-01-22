@@ -9,12 +9,45 @@ import java.util.List;
 
 import browsy.entities.Bookmark;
 import browsy.entities.Folder;
+import browsy.entities.History;
 import browsy.entities.Page;
 
 public class BookmarkDA extends DataAccessAbs<Bookmark>{
 
 	private final String TABLE_NAME = "bookmark";
 	private final String [] COLS = {"id", "pageId", "folderId", "createdAt"};
+
+	public List<Bookmark> getAllByPageId(int keyword) { //by page Id
+		String sql = "SELECT * FROM bookmark WHERE pageId=?";
+		PreparedStatement preparedStatement = null;
+		ResultSet result = null;
+		Bookmark bookmark ;
+		Folder folder;
+		Page page;
+		FolderDA folderDa = new FolderDA();
+		PageDA pageDa = new PageDA();
+		List<Bookmark> bookmarks = new ArrayList<Bookmark>();
+
+		try {
+			preparedStatement = DAUtils.initializePreparedStatement(this.connection, sql, false, keyword);
+			result = preparedStatement.executeQuery();
+			while(result.next()) {
+				bookmark = new Bookmark(result.getInt(COLS[0]), result.getDate(COLS[3]));
+				page = pageDa.getOneById(result.getInt(COLS[1]));
+				folder = folderDa.getOneById(result.getInt(COLS[2]));
+				bookmark.setPage(page);
+				bookmark.setFolder(folder);
+				bookmarks.add(bookmark);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		finally {
+			DAUtils.closeRessources(result);
+			DAUtils.closeRessources(preparedStatement);
+		}
+		return bookmarks;
+	}
 
 	@Override
 	public List<Bookmark> getAll() {

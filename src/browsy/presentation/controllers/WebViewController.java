@@ -37,6 +37,7 @@ import java.net.URL;
 import java.sql.Date;
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Locale;
 import java.util.ResourceBundle;
 
 public class WebViewController implements Initializable {
@@ -186,7 +187,6 @@ public class WebViewController implements Initializable {
                         e.printStackTrace();
                     }
                 }
-                System.out.println("adding to history :"+t1);
                 addToHistory();
             }).start();
         });
@@ -195,13 +195,27 @@ public class WebViewController implements Initializable {
 
 
     public void addToHistory(){
+        PageDA pageDA=new PageDA();
         History history=new History(0, Date.valueOf(LocalDate.now()));
-        Page page=new Page(0,webView.getEngine().getTitle() == null ? "Default Title": webView.getEngine().getTitle(),webView.getEngine().getLocation());
-        int i=new PageDA().save(page);
-        System.out.println(i);
-        Page pp=new PageDA().getOneById(i);
+        List<Page> pagesTemp=pageDA.getAllByName(webView.getEngine().getTitle());
+        Page page;
+        int id;
+        if(pagesTemp.size()>0){
+            page=pagesTemp.get(0);
+            id=page.getId();
+            System.out.println("page already exist");
+        }
+        else{
+            page=new Page(0,webView.getEngine().getTitle() == null ? "Default Title": webView.getEngine().getTitle().toLowerCase(Locale.ROOT),webView.getEngine().getLocation());
+            id=pageDA.save(page);
+
+        }
+
+        System.out.println(id);
+        Page pp=pageDA.getOneById(id);
         System.out.println(pp);
         history.setPage(pp);
+        System.out.println("adding to history :"+webView.getEngine().getLocation());
         new HistoryDA().save(history);
     }
 

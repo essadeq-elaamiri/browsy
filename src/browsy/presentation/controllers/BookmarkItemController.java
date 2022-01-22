@@ -1,17 +1,31 @@
 package browsy.presentation.controllers;
 
+import browsy.dataAccess.BookmarkDA;
 import browsy.entities.Bookmark;
 import browsy.presentation.utils.AlertMaker;
+import browsy.presentation.utils.WebViewInitializer;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.*;
 import javafx.scene.control.Alert.AlertType;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
+import javafx.scene.layout.GridPane;
 
+import java.io.IOException;
 import java.sql.Date;
 import java.time.LocalDateTime;
 
 public class BookmarkItemController { ////Browsy_0/src/browsy/presentation/controllers/BookmarkItemController.java
+
+	private WebViewInitializer webViewInitializer=new WebViewInitializer();
+
+	public void setWebViewInitializer(Tab tab, TabPane tabPane) {
+		this.webViewInitializer.setTab(tab);
+		this.webViewInitializer.setTabPane(tabPane);
+	}
+
+	@FXML
+	private GridPane gridPaneId;
+
 	@FXML
 	private Button deleteBookmark;
 
@@ -28,12 +42,21 @@ public class BookmarkItemController { ////Browsy_0/src/browsy/presentation/contr
 
 	@FXML
 	void onDeleteBookmarkBtnClicked(ActionEvent event) {
-		AlertMaker.sendAlert(AlertType.CONFIRMATION, "delete", null, null);
+		AlertMaker alert=new AlertMaker();
+		AlertMaker.sendAlert(Alert.AlertType.CONFIRMATION,"Warning","deleing bookmark","are you sure ?")
+				.ifPresent(buttonType -> {
+					if(buttonType==ButtonType.OK){
+						new BookmarkDA().delete(bookmark.getId());
+						GridPane parent = (GridPane) gridPaneId.getParent();
+						parent.getChildren().remove(gridPaneId);
+					}
+					else if(buttonType==ButtonType.CANCEL);
+				});
 	}
 
 	@FXML
-	void onVisitPageBtnClicked(ActionEvent event) {
-		AlertMaker.sendAlert(AlertType.CONFIRMATION, "visit page", null, null);
+	void onVisitPageBtnClicked(ActionEvent event) throws IOException {
+		webViewInitializer.initializePages(bookmark.getPage().getLink());
 
 	}
 
@@ -41,6 +64,5 @@ public class BookmarkItemController { ////Browsy_0/src/browsy/presentation/contr
 		this.bookmark = bookmark;
 		this.pageTitle.setText(bookmark.getPage().getName());
 		//this.pageDateTime.setText(bookmark.getCreatedAt().toString());
-
 	}
 }

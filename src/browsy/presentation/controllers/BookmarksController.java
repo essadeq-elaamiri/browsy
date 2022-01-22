@@ -1,24 +1,34 @@
 package browsy.presentation.controllers;
 
 import browsy.dataAccess.BookmarkDA;
+import browsy.dataAccess.PageDA;
 import browsy.entities.Bookmark;
+import browsy.entities.History;
+import browsy.entities.Page;
+import browsy.presentation.utils.WebViewInitializer;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.ScrollPane;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
 public class BookmarksController implements Initializable {
+
+
+    private WebViewInitializer webViewInitializer=new WebViewInitializer();
+
+    public void setWebViewInitializer(Tab tab, TabPane tabPane) {
+        this.webViewInitializer.setTab(tab);
+        this.webViewInitializer.setTabPane(tabPane);
+    }
 
     @FXML
     private GridPane bookmarksItemsPane;
@@ -45,9 +55,37 @@ public class BookmarksController implements Initializable {
     }
 
 
-    @FXML
-    void onSearchFieldAction(ActionEvent event) {
+    private void loadSpecificBookmark(List<Bookmark> Bookmarks) throws IOException {
 
+        this.bookmarksItemsPane.getChildren().removeIf(node -> 1==1);
+        int row = 1;
+        if (!Bookmarks.isEmpty()){
+            for (Bookmark bookmark: Bookmarks){
+                GridPane newItem = constructBookmarkItem(bookmark);
+                //append items to the VBox
+                //this.bookmarksItemsPane.getChildren().add(newItem);
+                this.bookmarksItemsPane.addRow(row, newItem);
+                row++;
+
+            }
+        }
+    }
+
+    List<Bookmark> listSearch=new ArrayList<>();
+    @FXML
+    void onSearchByName(ActionEvent event) throws IOException {
+        List<Page> pages=new PageDA().getAllByName(searchField.getText());
+        System.out.println("search : " +searchField.getText());
+        System.out.println("size ="+pages.size());
+        //System.out.println(pages.size()>0?pages.get(0):0);
+        pages.forEach(p->{
+            listSearch.addAll(bookmarkDA.getAllByPageId(p.getId()));
+
+
+            //  System.out.println(listSearch.size()>0?listSearch.get(0).getPage().getName():0);
+        });
+        loadSpecificBookmark(listSearch);
+        listSearch=new ArrayList<>();
     }
 
     @FXML
@@ -62,19 +100,8 @@ public class BookmarksController implements Initializable {
      */
     private void loadBookmarks() throws IOException {
         //retrieve data
-        List<Bookmark> bookmarks = bookmarkDA.getAll();
-        Label label = new Label("hello books");
-        int row = 1;
-        if (!bookmarks.isEmpty()){
-            for (Bookmark bookmark: bookmarks){
-                GridPane newItem = constructBookmarkItem(bookmark);
-                //append items to the VBox
-                //this.bookmarksItemsPane.getChildren().add(newItem);
-                this.bookmarksItemsPane.addRow(row, newItem);
-                row++;
+       loadSpecificBookmark( bookmarkDA.getAll());
 
-            }
-        }
 
     }
 
@@ -85,7 +112,16 @@ public class BookmarksController implements Initializable {
         //calling controller
         BookmarkItemController itemController = fxmlLoader.getController();
         itemController.setItemData(bookmark);
-
+        new Thread(() -> {
+            while(webViewInitializer.getTabPane()==null){
+                try {
+                    Thread.sleep(1000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+            itemController.setWebViewInitializer(webViewInitializer.getTab(), webViewInitializer.getTabPane());
+        }).start();
         return item;
     }
 

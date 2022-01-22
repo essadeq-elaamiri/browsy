@@ -27,7 +27,7 @@
                   <HBox alignment="CENTER" prefHeight="40.0" prefWidth="614.0">
                      <children>
 
-                        <TextField fx:id="searchField" onAction="#onSearchFieldAction" prefHeight="26.0" prefWidth="313.0" promptText="Search" style="-fx-border-color: gray; -fx-border-radius: 15;" styleClass="primary-color">
+                        <TextField fx:id="searchField" onKeyReleased="#onSearchByName" prefHeight="26.0" prefWidth="313.0" promptText="Search" style="-fx-border-color: gray; -fx-border-radius: 15;" styleClass="primary-color">
                            <padding>
                               <Insets left="10.0" right="10.0" />
                            </padding>

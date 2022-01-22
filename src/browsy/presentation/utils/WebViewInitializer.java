@@ -1,5 +1,6 @@
 package browsy.presentation.utils;
 
+import browsy.presentation.controllers.BookmarksController;
 import browsy.presentation.controllers.HistoryController;
 import browsy.presentation.controllers.WebViewController;
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon;
@@ -61,8 +62,20 @@ public class WebViewInitializer {
         tabPane.getTabs().add(tabPane.getTabs().size()-1,tab);
         tabPane.getSelectionModel().select(tabPane.getTabs().size()-2);
 
-        HistoryController historyController=fxmlLoader.getController();
-        historyController.setWebViewInitializer(tabPane.getTabs().get(tabPane.getTabs().size()-2),tabPane);
+        if(setting.equals("history")) {
+            HistoryController historyController = fxmlLoader.getController();
+            historyController.setWebViewInitializer(tabPane.getTabs().get(tabPane.getTabs().size() - 2), tabPane);
+        }
+
+        if(setting.equals("bookmarks")) {
+            BookmarksController bookmarksController = fxmlLoader.getController();
+            bookmarksController.setWebViewInitializer(tabPane.getTabs().get(tabPane.getTabs().size() - 2), tabPane);
+        }
+        /*
+        if(setting.equals("downloads")) {
+            DownloadsController downloadsController = fxmlLoader.getController();
+            downloadsController.setWebViewInitializer(tabPane.getTabs().get(tabPane.getTabs().size() - 2), tabPane);
+        }*/
     }
     public void initializePages(String link) throws IOException {
 

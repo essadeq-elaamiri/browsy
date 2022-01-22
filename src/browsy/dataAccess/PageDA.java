@@ -6,6 +6,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 import browsy.entities.Page;
 
@@ -66,6 +67,40 @@ public class PageDA extends DataAccessAbs<Page> {
 
 
 		return page;
+	}
+
+	public List<Page> getAllByName(String keyword) {
+		//by name
+		String sql = this.GET_ALL_LIKE.replace("{{TABLE_NAME}}", TABLE_NAME).replace("{{COL_NAME}}", COLS[1]);
+		//by link
+		//String sql = this.GET_ALL_LIKE.replace("{{TABLE_NAME}}", TABLE_NAME).replace("{{COL_NAME}}", COLS[2]);
+		PreparedStatement preparedStatement = null;
+		ResultSet result = null;
+		Page page = null;
+		List<Page> pages = new ArrayList<>();
+
+		try {
+			preparedStatement = DAUtils.initializePreparedStatement(this.connection, sql, false, "%"+keyword.toLowerCase(Locale.ROOT)+"%");
+			result = preparedStatement.executeQuery();
+			while(result.next()) {
+				//change start index from 0 to 1
+				//previous WRONG:
+				//page = new Page(result.getInt(0), result.getString(1), result.getString(2));
+				//new :
+				//page = new Page(result.getInt(1), result.getString(2), result.getString(3));
+				//new of new
+				page = new Page(result.getInt(COLS[0]), result.getString(COLS[1]), result.getString(COLS[2]));
+
+				pages.add(page);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		finally {
+			DAUtils.closeRessources(result);
+			DAUtils.closeRessources(preparedStatement);
+		}
+		return pages;
 	}
 
 	@Override
