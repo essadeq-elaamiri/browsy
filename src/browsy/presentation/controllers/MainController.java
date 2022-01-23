@@ -19,23 +19,12 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class MainController implements Initializable {
+public class MainController {
 
    @FXML
     private TabPane tabPaneId;
 
 
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-
-
-        //engine = webView.getEngine();
-        //homePage = "www.google.com";
-       // textField.setText(homePage);
-        //webZoom = 1;
-        //loadPage();
-
-    }
     public void initialiser() throws IOException {
 
         FXMLLoader fxmlLoader = new FXMLLoader(this.getClass().getResource("/browsy/presentation/views/webView.fxml"));
@@ -49,7 +38,7 @@ public class MainController implements Initializable {
         closebutton.setText("");
         closebutton.setGraphic(closeIcon);
         closebutton.setOnAction(actionEvent -> {
-            //TODO close Tab
+                tabPaneId.getTabs().remove(tab);
         });
         tab.getStyleClass().addAll("primary-color", "tab");
         tab.setText("Home");
